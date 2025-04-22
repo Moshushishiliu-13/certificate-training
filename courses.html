@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>认证培训课程列表 - 工厂人加油站</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .table-container {
+            overflow-x: auto;
+        }
+        .course-table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed; /* 固定表格布局 */
+        }
+        .course-table th {
+            background-color: #4F46E5;
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .course-table td {
+            padding: 10px 15px;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: 14px; /* 调整为更小的字体大小 */
+        }
+        .course-table th:first-child,
+        .course-table td:first-child {
+            width: 22%; /* 课程名称列宽度 */
+        }
+        .course-table th:nth-child(2),
+        .course-table td:nth-child(2) {
+            width: 15%; /* 开课时间列宽度 */
+        }
+        .course-table th:nth-child(3),
+        .course-table td:nth-child(3) {
+            width: 10%; /* 是否有证书列宽度 */
+        }
+        .course-table th:nth-child(4),
+        .course-table td:nth-child(4) {
+            width: 7%; /* 周期列宽度 */
+        }
+        .course-table th:nth-child(5),
+        .course-table td:nth-child(5) {
+            width: 12%; /* 考试周期列宽度 */
+        }
+        .course-table th:nth-child(6),
+        .course-table td:nth-child(6) {
+            width: 16%; /* 考试要求列宽度 */
+        }
+        .course-table th:nth-child(7),
+        .course-table td:nth-child(7) {
+            width: 8%; /* 价格列宽度 */
+        }
+        .course-table th:nth-child(8),
+        .course-table td:nth-child(8) {
+            width: 10%; /* 操作列宽度 */
+        }
+        .course-table tr:nth-child(even) {
+            background-color: #f9fafb;
+        }
+        .course-table tr:hover {
+            background-color: #f3f4f6;
+        }
+        .section-title {
+            background-color: #6366F1;
+            color: white;
+            font-weight: bold;
+            padding: 10px 15px;
+            font-size: 15px;
+        }
+        .new-label {
+            background-color: #EF4444;
+            color: white;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 1px 4px;
+            border-radius: 3px;
+            margin-left: 4px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        /* 提高表格响应式布局 */
+        @media (max-width: 1200px) {
+            .course-table th,
+            .course-table td {
+                font-size: 13px;
+                padding: 8px 10px;
+            }
+        }
+        
+        /* 课程名称特殊处理，使用自适应字体大小而非省略号 */
+        .course-name {
+            position: relative;
+            cursor: default;
+            white-space: nowrap; /* 不允许文本换行 */
+            overflow: hidden; /* 隐藏溢出内容 */
+            text-overflow: ellipsis; /* 显示省略号 */
+            line-height: 1.3; /* 紧凑的行高 */
+            height: auto; /* 自动高度 */
+        }
+        
+        /* 鼠标悬停提示样式 */
+        .course-name:hover::after {
+            content: attr(data-full-name);
+            position: absolute;
+            left: 0;
+            top: 100%;
+            z-index: 100;
+            background-color: #333;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            white-space: normal;
+            word-wrap: break-word;
+            width: auto;
+            max-width: 300px;
+            font-size: 13px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        /* 根据课程名称长度自动调整字体大小 */
+        .course-name[data-length="long"] {
+            font-size: 12px; /* 较长名称使用较小字体 */
+            letter-spacing: -0.3px; /* 字间距紧凑一些 */
+        }
+        
+        .course-name[data-length="medium"] {
+            font-size: 13px; /* 中等长度名称使用中等字体 */
+        }
+        
+        .course-name[data-length="short"] {
+            font-size: 14px; /* 较短名称保持标准字体 */
+        }
+        
+        /* 其他内容保持不换行和省略号 */
+        .nowrap-cell {
+            white-space: nowrap; /* 防止文本换行 */
+            overflow: hidden; /* 隐藏溢出内容 */
+            text-overflow: ellipsis; /* 显示省略号 */
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <header class="bg-white shadow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-900">工厂人加油站</h1>
+                    <p class="mt-1 text-sm text-gray-600">海量工厂管理认证培训课程，助力管理人员职业成长</p>
+                </div>
+                <a href="index.html" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
+                    返回首页
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div class="mb-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">课程搜索</h2>
+            <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                <div class="flex-1">
+                    <input type="text" id="course-search" placeholder="输入课程名称或关键词" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                </div>
+                <div>
+                    <select id="category-filter" class="w-full sm:w-48 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        <option value="all">所有类别</option>
+                        <option value="training-camp">训练营课程</option>
+                    </select>
+                </div>
+                <button id="search-btn" class="px-6 py-2 bg-indigo-600 text-white font-medium rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    搜索
+                </button>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table class="course-table">
+                <thead>
+                    <tr>
+                        <th>课程名称</th>
+                        <th>开课时间</th>
+                        <th>是否有证书</th>
+                        <th>周期</th>
+                        <th>考试周期</th>
+                        <th>考试要求</th>
+                        <th>价格</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="section-title" colspan="8">训练营课程</td>
+                    </tr>
+                    <tr>
+                        <td class="course-name" data-full-name="ISO 9001质量管理体系内审员培训" data-length="medium">ISO 9001质量管理体系内审员培训</td>
+                        <td class="nowrap-cell"><a href="#" class="text-blue-600 hover:underline">2025年全年训练营计划</a></td>
+                        <td class="nowrap-cell">内审员培训证书</td>
+                        <td class="nowrap-cell">约14天</td>
+                        <td class="nowrap-cell">培训班辅导结束后一个月内</td>
+                        <td class="nowrap-cell">完成课程学习，并且完成所有作业</td>
+                        <td class="nowrap-cell">￥198</td>
+                        <td class="nowrap-cell"><a href="payment.html?course=iso9001" class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">立即报名</a></td>
+                    </tr>
+                    <tr>
+                        <td class="course-name" data-full-name="IATF 16949汽车行业质量管理体系内审员培训" data-length="long">IATF 16949汽车行业质量管理体系内审员培训</td>
+                        <td class="nowrap-cell"><a href="#" class="text-blue-600 hover:underline">2025年全年训练营计划</a></td>
+                        <td class="nowrap-cell">内审员培训证书</td>
+                        <td class="nowrap-cell">约14天</td>
+                        <td class="nowrap-cell">不限考试次数</td>
+                        <td class="nowrap-cell">完成课程学习，并且完成所有作业</td>
+                        <td class="nowrap-cell">￥398</td>
+                        <td class="nowrap-cell"><a href="payment.html?course=iatf16949" class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">立即报名</a></td>
+                    </tr>
+                    <tr>
+                        <td class="course-name" data-full-name="ISO 14001 & 45001内审员培训" data-length="medium">ISO 14001 & 45001内审员培训</td>
+                        <td class="nowrap-cell"><a href="#" class="text-blue-600 hover:underline">2025年全年训练营计划</a></td>
+                        <td class="nowrap-cell">内审员培训证书</td>
+                        <td class="nowrap-cell">约14天</td>
+                        <td class="nowrap-cell">不限考试次数</td>
+                        <td class="nowrap-cell">完成课程学习，并且完成所有作业</td>
+                        <td class="nowrap-cell">￥198</td>
+                        <td class="nowrap-cell"><a href="payment.html?course=iso14001-45001" class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">立即报名</a></td>
+                    </tr>
+                    <tr>
+                        <td class="course-name" data-full-name="ISO 13485医疗器械质量管理体系内审员培训" data-length="long">ISO 13485医疗器械质量管理体系内审员培训</td>
+                        <td class="nowrap-cell"><a href="#" class="text-blue-600 hover:underline">2025年全年训练营计划</a></td>
+                        <td class="nowrap-cell">内审员培训证书</td>
+                        <td class="nowrap-cell">约14天</td>
+                        <td class="nowrap-cell">不限考试次数</td>
+                        <td class="nowrap-cell">完成课程学习，并且完成所有作业</td>
+                        <td class="nowrap-cell">￥198</td>
+                        <td class="nowrap-cell"><a href="payment.html?course=iso13485" class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">立即报名</a></td>
+                    </tr>
+                    <tr>
+                        <td class="course-name" data-full-name="ISO 9001质量管理体系审核技术进阶课程" data-length="long">ISO 9001质量管理体系审核技术进阶课程</td>
+                        <td class="nowrap-cell"><a href="#" class="text-blue-600 hover:underline">2025年全年训练营计划</a></td>
+                        <td class="nowrap-cell">课程培训证书</td>
+                        <td class="nowrap-cell">约14天</td>
+                        <td class="nowrap-cell">不限考试次数</td>
+                        <td class="nowrap-cell">完成课程学习，并且完成所有作业</td>
+                        <td class="nowrap-cell">￥399</td>
+                        <td class="nowrap-cell"><a href="payment.html?course=iso9001-advanced" class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">立即报名</a></td>
+                    </tr>
+                    <tr>
+                        <td class="course-name" data-full-name="IATF体系文件策划与关键过程管理训练营" data-length="long">IATF体系文件策划与关键过程管理训练营</td>
+                        <td class="nowrap-cell"><a href="#" class="text-blue-600 hover:underline">2025年全年训练营计划</a></td>
+                        <td class="nowrap-cell">课程培训证书</td>
+                        <td class="nowrap-cell">约14天</td>
+                        <td class="nowrap-cell">不限考试次数</td>
+                        <td class="nowrap-cell">完成课程学习，并且完成所有作业</td>
+                        <td class="nowrap-cell">￥499</td>
+                        <td class="nowrap-cell"><a href="payment.html?course=iatf-planning" class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">立即报名</a></td>
+                    </tr>
+                    <tr>
+                        <td class="course-name" data-full-name="ISO9001质量管理体系文件策划与编写指导" data-length="long">ISO9001质量管理体系文件策划与编写指导</td>
+                        <td class="nowrap-cell"><a href="#" class="text-blue-600 hover:underline">2025年全年训练营计划</a></td>
+                        <td class="nowrap-cell">课程培训证书</td>
+                        <td class="nowrap-cell">约18天</td>
+                        <td class="nowrap-cell">不限考试次数</td>
+                        <td class="nowrap-cell">完成课程学习，并且完成所有作业</td>
+                        <td class="nowrap-cell">￥299</td>
+                        <td class="nowrap-cell"><a href="payment.html?course=iso9001-doc" class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">立即报名</a></td>
+                    </tr>
+                    <tr>
+                        <td class="course-name" data-full-name="基于问题解决的QC七大手法工具应用" data-length="long">基于问题解决的QC七大手法工具应用</td>
+                        <td class="nowrap-cell"><a href="#" class="text-blue-600 hover:underline">2025年全年训练营计划</a></td>
+                        <td class="nowrap-cell">课程培训证书</td>
+                        <td class="nowrap-cell">约14天</td>
+                        <td class="nowrap-cell">不限考试次数</td>
+                        <td class="nowrap-cell">完成课程学习，并且完成所有作业</td>
+                        <td class="nowrap-cell">￥198</td>
+                        <td class="nowrap-cell"><a href="payment.html?course=qc-tools" class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">立即报名</a></td>
+                    </tr>
+                    <tr>
+                        <td class="course-name" data-full-name="8D精讲与案例实操" data-length="short">8D精讲与案例实操</td>
+                        <td class="nowrap-cell"><a href="#" class="text-blue-600 hover:underline">2025年全年训练营计划</a></td>
+                        <td class="nowrap-cell">课程培训证书</td>
+                        <td class="nowrap-cell">约7天</td>
+                        <td class="nowrap-cell">不限考试次数</td>
+                        <td class="nowrap-cell">完成课程学习，并且完成所有作业</td>
+                        <td class="nowrap-cell">￥198</td>
+                        <td class="nowrap-cell"><a href="payment.html?course=8d" class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">立即报名</a></td>
+                    </tr>
+                    <tr>
+                        <td class="course-name" data-full-name="质量管理核心工具训练营（APQP/PPAP)" data-length="long">质量管理核心工具训练营（APQP/PPAP)</td>
+                        <td class="nowrap-cell"><a href="#" class="text-blue-600 hover:underline">2025年全年训练营计划</a></td>
+                        <td class="nowrap-cell">课程培训证书</td>
+                        <td class="nowrap-cell">约20天</td>
+                        <td class="nowrap-cell">不限考试次数</td>
+                        <td class="nowrap-cell">完成课程学习，并且完成所有作业</td>
+                        <td class="nowrap-cell">￥499</td>
+                        <td class="nowrap-cell"><a href="payment.html?course=apqp-ppap" class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">立即报名</a></td>
+                    </tr>
+                    <tr>
+                        <td class="course-name" data-full-name="质量管理核心工具训练营（FMEA)" data-length="medium">质量管理核心工具训练营（FMEA)</td>
+                        <td class="nowrap-cell"><a href="#" class="text-blue-600 hover:underline">2025年全年训练营计划</a></td>
+                        <td class="nowrap-cell">课程培训证书</td>
+                        <td class="nowrap-cell">约20天</td>
+                        <td class="nowrap-cell">不限考试次数</td>
+                        <td class="nowrap-cell">完成课程学习，并且完成所有作业</td>
+                        <td class="nowrap-cell">￥299</td>
+                        <td class="nowrap-cell"><a href="payment.html?course=fmea" class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">立即报名</a></td>
+                    </tr>
+                    <tr>
+                        <td class="course-name" data-full-name="质量管理核心工具训练营（SPC/MSA)" data-length="medium">质量管理核心工具训练营（SPC/MSA)</td>
+                        <td class="nowrap-cell"><a href="#" class="text-blue-600 hover:underline">2025年全年训练营计划</a></td>
+                        <td class="nowrap-cell">课程培训证书</td>
+                        <td class="nowrap-cell">约20天</td>
+                        <td class="nowrap-cell">不限考试次数</td>
+                        <td class="nowrap-cell">完成课程学习，并且完成所有作业</td>
+                        <td class="nowrap-cell">￥399</td>
+                        <td class="nowrap-cell"><a href="payment.html?course=spc-msa" class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">立即报名</a></td>
+                    </tr>
+                    <tr>
+                        <td class="course-name" data-full-name="质量管理核心工具训练营（CP)" data-length="medium">质量管理核心工具训练营（CP)</td>
+                        <td class="nowrap-cell"><a href="#" class="text-blue-600 hover:underline">2025年全年训练营计划</a></td>
+                        <td class="nowrap-cell">课程培训证书</td>
+                        <td class="nowrap-cell">约20天</td>
+                        <td class="nowrap-cell">不限考试次数</td>
+                        <td class="nowrap-cell">完成课程学习，并且完成所有作业</td>
+                        <td class="nowrap-cell">￥299</td>
+                        <td class="nowrap-cell"><a href="payment.html?course=cp" class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">立即报名</a></td>
+                    </tr>
+                    <tr>
+                        <td class="course-name" data-full-name="VDA 6.3:2023 过程审核标准精讲与应用课程" data-length="long">VDA 6.3:2023 过程审核标准精讲与应用课程</td>
+                        <td class="nowrap-cell"><a href="#" class="text-blue-600 hover:underline">2025年全年训练营计划</a></td>
+                        <td class="nowrap-cell">课程培训证书</td>
+                        <td class="nowrap-cell">约14天</td>
+                        <td class="nowrap-cell">不限考试次数</td>
+                        <td class="nowrap-cell">完成课程学习，并且完成所有作业</td>
+                        <td class="nowrap-cell">￥299</td>
+                        <td class="nowrap-cell"><a href="payment.html?course=vda-6-3" class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">立即报名</a></td>
+                    </tr>
+                    <tr>
+                        <td class="course-name" data-full-name="精益六西格玛黄带" data-length="short">精益六西格玛黄带</td>
+                        <td class="nowrap-cell"><a href="#" class="text-blue-600 hover:underline">2025年全年训练营计划</a></td>
+                        <td class="nowrap-cell">课程培训证书</td>
+                        <td class="nowrap-cell">约14天</td>
+                        <td class="nowrap-cell">不限考试次数</td>
+                        <td class="nowrap-cell">完成课程学习，并且完成所有作业</td>
+                        <td class="nowrap-cell">￥398</td>
+                        <td class="nowrap-cell"><a href="payment.html?course=lean-six-sigma-yellow" class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">立即报名</a></td>
+                    </tr>
+                    <tr>
+                        <td class="course-name" data-full-name="精益六西格玛绿带" data-length="short">精益六西格玛绿带</td>
+                        <td class="nowrap-cell"><a href="#" class="text-blue-600 hover:underline">2025年全年训练营计划</a></td>
+                        <td class="nowrap-cell">课程培训证书</td>
+                        <td class="nowrap-cell">约60天</td>
+                        <td class="nowrap-cell">不限考试次数</td>
+                        <td class="nowrap-cell">完成课程学习，并且完成所有作业</td>
+                        <td class="nowrap-cell">￥2,399</td>
+                        <td class="nowrap-cell"><a href="payment.html?course=lean-six-sigma-green" class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">立即报名</a></td>
+                    </tr>
+                    <tr>
+                        <td class="course-name" data-full-name="精益六西格玛黑带" data-length="short">精益六西格玛黑带</td>
+                        <td class="nowrap-cell"><a href="#" class="text-blue-600 hover:underline">2025年全年训练营计划</a></td>
+                        <td class="nowrap-cell">课程培训证书</td>
+                        <td class="nowrap-cell">约60天</td>
+                        <td class="nowrap-cell">不限考试次数</td>
+                        <td class="nowrap-cell">完成课程学习，并且完成所有作业</td>
+                        <td class="nowrap-cell">￥3,999</td>
+                        <td class="nowrap-cell"><a href="payment.html?course=lean-six-sigma-black" class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">立即报名</a></td>
+                    </tr>
+                    <tr>
+                        <td class="course-name" data-full-name="PMP认证考试培训直播课" data-length="medium">PMP认证考试培训直播课</td>
+                        <td class="nowrap-cell"><a href="#" class="text-blue-600 hover:underline">2025年全年训练营计划</a></td>
+                        <td class="nowrap-cell">证书考试培训</td>
+                        <td class="nowrap-cell">2年有效</td>
+                        <td class="nowrap-cell">参加PMI统一考试</td>
+                        <td class="nowrap-cell">完成课程学习，并且完成所有作业</td>
+                        <td class="nowrap-cell">￥3,180</td>
+                        <td class="nowrap-cell"><a href="payment.html?course=pmp" class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">立即报名</a></td>
+                    </tr>
+                    <tr>
+                        <td class="course-name" data-full-name="国考信息系统项目管理师线上直播班" data-length="long">国考信息系统项目管理师线上直播班 <span class="new-label">New!</span></td>
+                        <td class="nowrap-cell"><a href="#" class="text-blue-600 hover:underline">2025年全年训练营计划</a></td>
+                        <td class="nowrap-cell">证书考试培训</td>
+                        <td class="nowrap-cell">2年有效</td>
+                        <td class="nowrap-cell">参加统一考试</td>
+                        <td class="nowrap-cell">完成课程学习，并且完成所有作业</td>
+                        <td class="nowrap-cell">￥3,480</td>
+                        <td class="nowrap-cell"><a href="payment.html?course=info-sys-pm" class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">立即报名</a></td>
+                    </tr>
+                    <tr>
+                        <td class="course-name" data-full-name="ESG启航计划线上课程" data-length="medium">ESG启航计划线上课程 <span class="new-label">New!</span></td>
+                        <td class="nowrap-cell"><a href="#" class="text-blue-600 hover:underline">2025年全年训练营计划</a></td>
+                        <td class="nowrap-cell">证书考试培训</td>
+                        <td class="nowrap-cell">约20天</td>
+                        <td class="nowrap-cell">参加统一考试</td>
+                        <td class="nowrap-cell">完成课程学习，并且完成所有作业</td>
+                        <td class="nowrap-cell">￥2,500</td>
+                        <td class="nowrap-cell"><a href="payment.html?course=esg-online" class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">立即报名</a></td>
+                    </tr>
+                    <tr>
+                        <td class="course-name" data-full-name="GRI可持续发展报告指南（2021版）认证课程" data-length="long">GRI可持续发展报告指南（2021版）认证课程 <span class="new-label">New!</span></td>
+                        <td class="nowrap-cell"><a href="#" class="text-blue-600 hover:underline">2025年全年训练营计划</a></td>
+                        <td class="nowrap-cell">证书考试培训</td>
+                        <td class="nowrap-cell">约20天</td>
+                        <td class="nowrap-cell">参加统一考试</td>
+                        <td class="nowrap-cell">完成课程学习，并且完成所有作业</td>
+                        <td class="nowrap-cell">￥3,000</td>
+                        <td class="nowrap-cell"><a href="payment.html?course=gri-2021" class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">立即报名</a></td>
+                    </tr>
+                    <tr>
+                        <td class="course-name" data-full-name="ESG优才理论与实践年度线下培训" data-length="long">ESG优才理论与实践年度线下培训 <span class="new-label">New!</span></td>
+                        <td class="nowrap-cell"><a href="#" class="text-blue-600 hover:underline">2025年全年训练营计划</a></td>
+                        <td class="nowrap-cell">证书考试培训</td>
+                        <td class="nowrap-cell">1年</td>
+                        <td class="nowrap-cell">参加统一考试</td>
+                        <td class="nowrap-cell">完成课程学习，并且完成所有作业</td>
+                        <td class="nowrap-cell">￥14,800</td>
+                        <td class="nowrap-cell"><a href="payment.html?course=esg-offline" class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">立即报名</a></td>
+                    </tr>
+                    <tr>
+                        <td class="course-name" data-full-name="国家注册审核员训练营" data-length="medium">国家注册审核员训练营</td>
+                        <td class="nowrap-cell"><a href="#" class="text-blue-600 hover:underline">2025年全年训练营计划</a></td>
+                        <td class="nowrap-cell">证书考试培训</td>
+                        <td class="nowrap-cell">不限时</td>
+                        <td class="nowrap-cell">参加CCAA统一考试</td>
+                        <td class="nowrap-cell">完成课程学习，并且完成所有作业</td>
+                        <td class="nowrap-cell">¥599/科目</td>
+                        <td class="nowrap-cell"><a href="payment.html?course=national-auditor" class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">立即报名</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-6 md:mb-0">
+                    <h2 class="text-lg font-semibold mb-4">工厂人加油站</h2>
+                    <p class="text-gray-300 text-sm">海量工厂管理认证培训课程，助力管理人员职业成长</p>
+                </div>
+                <div class="grid grid-cols-2 gap-8 sm:grid-cols-3">
+                    <div>
+                        <h3 class="text-base font-medium mb-3">关于我们</h3>
+                        <ul class="text-sm space-y-2">
+                            <li><a href="#" class="text-gray-300 hover:text-white">公司简介</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-white">讲师团队</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-white">联系方式</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-medium mb-3">培训服务</h3>
+                        <ul class="text-sm space-y-2">
+                            <li><a href="#" class="text-gray-300 hover:text-white">企业内训</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-white">公开课程</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-white">在线学习</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-medium mb-3">帮助中心</h3>
+                        <ul class="text-sm space-y-2">
+                            <li><a href="#" class="text-gray-300 hover:text-white">常见问题</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-white">报名流程</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-white">学习指南</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-700 text-sm text-gray-400">
+                <p>© 2025 工厂人加油站. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        /**
+         * 为课程名称添加自适应字体大小功能
+         * 根据课程名称长度自动调整字体大小，使课程名称能够完整显示而非省略号
+         */
+        document.addEventListener('DOMContentLoaded', function() {
+            const courseNames = document.querySelectorAll('.course-name');
+            
+            /**
+             * 设置课程名称的字体大小属性
+             * 根据文本长度动态分配合适的字体大小
+             * @param {HTMLElement} element - 课程名称元素
+             */
+            function setCourseFontSize(element) {
+                const fullName = element.getAttribute('data-full-name');
+                const length = fullName.length;
+                
+                // 根据文本长度设置不同的字体大小
+                if (length > 25) {
+                    element.setAttribute('data-length', 'long');
+                } else if (length > 15) {
+                    element.setAttribute('data-length', 'medium');
+                } else {
+                    element.setAttribute('data-length', 'short');
+                }
+                
+                // 设置文本内容为完整名称
+                element.textContent = fullName;
+                
+                // 确保data-full-name属性存在(用于hover效果显示完整名称)
+                if (!element.hasAttribute('data-full-name')) {
+                    element.setAttribute('data-full-name', fullName);
+                }
+                
+                // 添加title属性，用于默认浏览器悬停提示
+                element.setAttribute('title', fullName);
+                
+                // 添加鼠标悬停样式
+                element.style.cursor = 'help';
+            }
+            
+            // 对所有课程名称应用字体大小设置
+            courseNames.forEach(setCourseFontSize);
+            
+            /**
+             * 课程搜索功能实现
+             * 根据输入的关键词搜索匹配的课程
+             */
+            const searchInput = document.getElementById('course-search');
+            const categoryFilter = document.getElementById('category-filter');
+            const searchBtn = document.getElementById('search-btn');
+            const courseRows = document.querySelectorAll('tbody tr:not(.section-title)');
+            const sectionTitles = document.querySelectorAll('.section-title');
+            
+            // 搜索函数
+            function performSearch() {
+                const searchTerm = searchInput.value.toLowerCase().trim();
+                const category = categoryFilter.value;
+                
+                // 重置所有行的显示状态
+                sectionTitles.forEach(title => {
+                    title.style.display = '';
+                });
+                
+                // 记录每个部分的可见行数
+                const visibleRowsBySection = {};
+                
+                // 过滤课程行
+                courseRows.forEach(row => {
+                    // 跳过部分标题行
+                    if (row.querySelector('.section-title')) {
+                        return;
+                    }
+                    
+                    const courseNameCell = row.querySelector('.course-name');
+                    
+                    // 如果没有课程名称单元格，可能是特殊行，继续显示
+                    if (!courseNameCell) {
+                        return;
+                    }
+                    
+                    const courseName = courseNameCell.getAttribute('data-full-name').toLowerCase();
+                    const sectionTitle = row.previousElementSibling;
+                    const sectionName = sectionTitle && sectionTitle.querySelector('.section-title') ? 
+                                        sectionTitle.querySelector('.section-title').textContent.toLowerCase() : '';
+                    
+                    // 检查类别过滤
+                    const categoryMatch = category === 'all' || 
+                                        (category === 'training-camp' && sectionName.includes('训练营'));
+                    
+                    // 检查搜索词匹配
+                    const searchMatch = !searchTerm || courseName.includes(searchTerm);
+                    
+                    // 只显示同时匹配类别和搜索词的行
+                    if (categoryMatch && searchMatch) {
+                        row.style.display = '';
+                        
+                        // 记录该行所属的部分
+                        if (sectionTitle) {
+                            const sectionText = sectionTitle.textContent;
+                            visibleRowsBySection[sectionText] = (visibleRowsBySection[sectionText] || 0) + 1;
+                        }
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+                
+                // 隐藏没有可见行的部分标题
+                sectionTitles.forEach(title => {
+                    const sectionText = title.textContent;
+                    if (!visibleRowsBySection[sectionText] || visibleRowsBySection[sectionText] === 0) {
+                        title.parentElement.style.display = 'none';
+                    } else {
+                        title.parentElement.style.display = '';
+                    }
+                });
+            }
+            
+            // 搜索按钮点击事件
+            searchBtn.addEventListener('click', performSearch);
+            
+            // 输入框回车事件
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+            
+            // 类别选择变化事件
+            categoryFilter.addEventListener('change', performSearch);
+            
+            /**
+             * 窗口大小变化时重新调整字体大小
+             * 保证在各种屏幕尺寸下课程名称都能正常显示
+             */
+            window.addEventListener('resize', function() {
+                const container = document.querySelector('.table-container');
+                const containerWidth = container.offsetWidth;
+                
+                // 根据容器宽度调整整体字体大小
+                if (containerWidth < 768) {
+                    document.querySelectorAll('[data-length="long"]').forEach(el => {
+                        el.style.fontSize = '11px';
+                        el.style.letterSpacing = '-0.5px';
+                    });
+                    document.querySelectorAll('[data-length="medium"]').forEach(el => {
+                        el.style.fontSize = '12px';
+                        el.style.letterSpacing = '-0.3px';
+                    });
+                    document.querySelectorAll('[data-length="short"]').forEach(el => {
+                        el.style.fontSize = '13px';
+                    });
+                } else {
+                    document.querySelectorAll('[data-length="long"]').forEach(el => {
+                        el.style.fontSize = '';  // 恢复CSS默认值
+                        el.style.letterSpacing = '';
+                    });
+                    document.querySelectorAll('[data-length="medium"]').forEach(el => {
+                        el.style.fontSize = '';  // 恢复CSS默认值
+                        el.style.letterSpacing = '';
+                    });
+                    document.querySelectorAll('[data-length="short"]').forEach(el => {
+                        el.style.fontSize = '';  // 恢复CSS默认值
+                    });
+                }
+            });
+            
+            // 初始调用一次窗口大小变化处理
+            window.dispatchEvent(new Event('resize'));
+        });
+    </script>
+</body>
+</html> 
