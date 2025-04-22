@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>课程报名支付 - 工厂人加油站</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50">
+    <header class="bg-white shadow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-900">工厂人加油站</h1>
+                    <p class="mt-1 text-sm text-gray-600">课程报名支付</p>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="courses.html" class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                        返回课程列表
+                    </a>
+                    <a href="index.html" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
+                        返回首页
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+            <div class="px-4 py-5 sm:px-6">
+                <h2 class="text-lg leading-6 font-medium text-gray-900" id="course-title">课程报名</h2>
+                <p class="mt-1 max-w-2xl text-sm text-gray-500">请确认课程信息并完成支付</p>
+            </div>
+            <div class="border-t border-gray-200">
+                <dl>
+                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <dt class="text-sm font-medium text-gray-500">课程名称</dt>
+                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2" id="course-name">--</dd>
+                    </div>
+                    <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <dt class="text-sm font-medium text-gray-500">课程价格</dt>
+                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2" id="course-price">--</dd>
+                    </div>
+                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <dt class="text-sm font-medium text-gray-500">课程周期</dt>
+                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2" id="course-duration">--</dd>
+                    </div>
+                    <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <dt class="text-sm font-medium text-gray-500">证书类型</dt>
+                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2" id="course-certificate">--</dd>
+                    </div>
+                </dl>
+            </div>
+        </div>
+
+        <div class="mt-10 bg-white shadow overflow-hidden sm:rounded-lg">
+            <div class="px-4 py-5 sm:px-6">
+                <h3 class="text-lg leading-6 font-medium text-gray-900">个人信息</h3>
+                <p class="mt-1 max-w-2xl text-sm text-gray-500">请填写您的联系信息</p>
+            </div>
+            <div class="px-4 py-5 sm:p-6">
+                <form id="payment-form">
+                    <div class="grid grid-cols-6 gap-6">
+                        <div class="col-span-6 sm:col-span-3">
+                            <label for="first-name" class="block text-sm font-medium text-gray-700">姓名</label>
+                            <input type="text" name="first-name" id="first-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                        </div>
+
+                        <div class="col-span-6 sm:col-span-3">
+                            <label for="phone" class="block text-sm font-medium text-gray-700">手机号码</label>
+                            <input type="text" name="phone" id="phone" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                        </div>
+
+                        <div class="col-span-6 sm:col-span-4">
+                            <label for="email" class="block text-sm font-medium text-gray-700">电子邮箱</label>
+                            <input type="text" name="email" id="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                        </div>
+
+                        <div class="col-span-6 sm:col-span-3">
+                            <label for="company" class="block text-sm font-medium text-gray-700">公司/单位</label>
+                            <input type="text" name="company" id="company" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                        </div>
+
+                        <div class="col-span-6 sm:col-span-3">
+                            <label for="position" class="block text-sm font-medium text-gray-700">职位</label>
+                            <input type="text" name="position" id="position" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                        </div>
+
+                        <div class="col-span-6">
+                            <label for="remarks" class="block text-sm font-medium text-gray-700">备注</label>
+                            <textarea id="remarks" name="remarks" rows="3" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="mt-10 bg-white shadow overflow-hidden sm:rounded-lg">
+            <div class="px-4 py-5 sm:px-6">
+                <h3 class="text-lg leading-6 font-medium text-gray-900">支付方式</h3>
+                <p class="mt-1 max-w-2xl text-sm text-gray-500">请选择您的支付方式</p>
+            </div>
+            <div class="px-4 py-5 sm:p-6">
+                <div class="flex space-x-4">
+                    <div class="flex items-center">
+                        <input id="payment-wechat" name="payment-method" type="radio" checked class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
+                        <label for="payment-wechat" class="ml-3 block text-sm font-medium text-gray-700">
+                            微信支付
+                        </label>
+                    </div>
+                    <div class="flex items-center">
+                        <input id="payment-alipay" name="payment-method" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
+                        <label for="payment-alipay" class="ml-3 block text-sm font-medium text-gray-700">
+                            支付宝
+                        </label>
+                    </div>
+                    <div class="flex items-center">
+                        <input id="payment-bank" name="payment-method" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
+                        <label for="payment-bank" class="ml-3 block text-sm font-medium text-gray-700">
+                            银行转账
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-10 flex justify-end">
+            <button type="button" class="mr-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" id="submit-payment">
+                确认支付
+            </button>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-6 md:mb-0">
+                    <h2 class="text-lg font-semibold mb-4">工厂人加油站</h2>
+                    <p class="text-gray-300 text-sm">专业认证培训，助力您的职业成长</p>
+                </div>
+                <div class="grid grid-cols-2 gap-8 sm:grid-cols-3">
+                    <div>
+                        <h3 class="text-base font-medium mb-3">关于我们</h3>
+                        <ul class="text-sm space-y-2">
+                            <li><a href="#" class="text-gray-300 hover:text-white">公司简介</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-white">讲师团队</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-white">联系方式</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-medium mb-3">培训服务</h3>
+                        <ul class="text-sm space-y-2">
+                            <li><a href="#" class="text-gray-300 hover:text-white">企业内训</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-white">公开课程</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-white">在线学习</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-medium mb-3">帮助中心</h3>
+                        <ul class="text-sm space-y-2">
+                            <li><a href="#" class="text-gray-300 hover:text-white">常见问题</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-white">报名流程</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-white">学习指南</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-700 text-sm text-gray-400">
+                <p>© 2025 工厂人加油站. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取URL参数
+            const urlParams = new URLSearchParams(window.location.search);
+            const courseId = urlParams.get('course');
+            
+            // 课程数据库
+            const courses = {
+                'iso9001': {
+                    name: 'ISO 9001质量管理体系内审员培训',
+                    price: '￥198',
+                    duration: '约14天',
+                    certificate: '内审员培训证书'
+                },
+                'iatf16949': {
+                    name: 'IATF 16949汽车行业质量管理体系内审员培训',
+                    price: '￥398',
+                    duration: '约14天',
+                    certificate: '内审员培训证书'
+                },
+                'iso14001-45001': {
+                    name: 'ISO 14001 & 45001内审员培训',
+                    price: '￥198',
+                    duration: '约14天',
+                    certificate: '内审员培训证书'
+                },
+                'iso13485': {
+                    name: 'ISO 13485医疗器械质量管理体系内审员培训',
+                    price: '￥198',
+                    duration: '约14天',
+                    certificate: '内审员培训证书'
+                },
+                'iso9001-advanced': {
+                    name: 'ISO 9001质量管理体系审核技术进阶课程',
+                    price: '￥399',
+                    duration: '约14天',
+                    certificate: '课程培训证书'
+                },
+                'iatf-planning': {
+                    name: 'IATF体系文件策划与关键过程管理训练营',
+                    price: '￥499',
+                    duration: '约14天',
+                    certificate: '课程培训证书'
+                },
+                'iso9001-doc': {
+                    name: 'ISO9001质量管理体系文件策划与编写指导',
+                    price: '￥299',
+                    duration: '约18天',
+                    certificate: '课程培训证书'
+                },
+                'qc-tools': {
+                    name: '基于问题解决的QC七大手法工具应用',
+                    price: '￥198',
+                    duration: '约14天',
+                    certificate: '课程培训证书'
+                },
+                '8d': {
+                    name: '8D精讲与案例实操',
+                    price: '￥198',
+                    duration: '约7天',
+                    certificate: '课程培训证书'
+                },
+                'apqp-ppap': {
+                    name: '质量管理核心工具训练营（APQP/PPAP)',
+                    price: '￥499',
+                    duration: '约20天',
+                    certificate: '课程培训证书'
+                },
+                'fmea': {
+                    name: '质量管理核心工具训练营（FMEA)',
+                    price: '￥299',
+                    duration: '约20天',
+                    certificate: '课程培训证书'
+                },
+                'spc-msa': {
+                    name: '质量管理核心工具训练营（SPC/MSA)',
+                    price: '￥399',
+                    duration: '约20天',
+                    certificate: '课程培训证书'
+                },
+                'cp': {
+                    name: '质量管理核心工具训练营（CP)',
+                    price: '￥299',
+                    duration: '约20天',
+                    certificate: '课程培训证书'
+                },
+                'vda-6-3': {
+                    name: 'VDA 6.3:2023 过程审核标准精讲与应用课程',
+                    price: '￥299',
+                    duration: '约14天',
+                    certificate: '课程培训证书'
+                },
+                'lean-six-sigma-yellow': {
+                    name: '精益六西格玛黄带',
+                    price: '￥398',
+                    duration: '约14天',
+                    certificate: '课程培训证书'
+                },
+                'lean-six-sigma-green': {
+                    name: '精益六西格玛绿带',
+                    price: '￥2,399',
+                    duration: '约60天',
+                    certificate: '课程培训证书'
+                },
+                'lean-six-sigma-black': {
+                    name: '精益六西格玛黑带',
+                    price: '￥3,999',
+                    duration: '约60天',
+                    certificate: '课程培训证书'
+                },
+                'pmp': {
+                    name: 'PMP认证考试培训直播课',
+                    price: '￥3,180',
+                    duration: '2年有效',
+                    certificate: '证书考试培训'
+                },
+                'info-sys-pm': {
+                    name: '国考信息系统项目管理师线上直播班',
+                    price: '￥3,480',
+                    duration: '2年有效',
+                    certificate: '证书考试培训'
+                },
+                'esg-online': {
+                    name: 'ESG启航计划线上课程',
+                    price: '￥2,500',
+                    duration: '约20天',
+                    certificate: '证书考试培训'
+                },
+                'gri-2021': {
+                    name: 'GRI可持续发展报告指南（2021版）认证课程',
+                    price: '￥3,000',
+                    duration: '约20天',
+                    certificate: '证书考试培训'
+                },
+                'esg-offline': {
+                    name: 'ESG优才理论与实践年度线下培训',
+                    price: '￥14,800',
+                    duration: '1年',
+                    certificate: '证书考试培训'
+                },
+                'national-auditor': {
+                    name: '国家注册审核员训练营',
+                    price: '¥599/科目',
+                    duration: '不限时',
+                    certificate: '证书考试培训'
+                }
+            };
+            
+            // 填充课程信息
+            if (courseId && courses[courseId]) {
+                const course = courses[courseId];
+                document.getElementById('course-title').innerText = '课程报名 - ' + course.name;
+                document.getElementById('course-name').innerText = course.name;
+                document.getElementById('course-price').innerText = course.price;
+                document.getElementById('course-duration').innerText = course.duration;
+                document.getElementById('course-certificate').innerText = course.certificate;
+                document.title = '课程报名: ' + course.name + ' - 工厂人加油站';
+            } else {
+                // 默认显示或错误处理
+                document.getElementById('course-title').innerText = '课程信息未找到';
+                document.getElementById('course-name').innerText = '未知课程';
+                document.getElementById('course-price').innerText = '--';
+                document.getElementById('course-duration').innerText = '--';
+                document.getElementById('course-certificate').innerText = '--';
+            }
+            
+            // 处理支付按钮点击
+            document.getElementById('submit-payment').addEventListener('click', function() {
+                // 表单验证
+                const name = document.getElementById('first-name').value;
+                const phone = document.getElementById('phone').value;
+                const email = document.getElementById('email').value;
+                
+                if (!name || !phone) {
+                    alert('请填写姓名和手机号码');
+                    return;
+                }
+                
+                // 这里是模拟支付流程，实际项目中应该连接到支付API
+                alert('感谢您的报名！我们将尽快与您联系确认课程详情。');
+                
+                // 重定向回课程列表页面
+                // window.location.href = 'courses.html';
+            });
+        });
+    </script>
+</body>
+</html> 
