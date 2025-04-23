@@ -526,6 +526,462 @@
                     alert('银行转账信息已发送到您的邮箱，请查收');
                 }
             });
+
+            /**
+             * @description 支付宝支付结果同步功能
+             */
+            function initAlipaySync() {
+                // 创建订单数据存储
+                const orderStorage = {
+                    // 模拟数据库存储订单
+                    orders: {},
+                    
+                    /**
+                     * @description 保存订单信息
+                     * @param {Object} orderData - 订单数据
+                     */
+                    saveOrder: function(orderData) {
+                        this.orders[orderData.orderId] = {
+                            ...orderData,
+                            status: 'WAIT_BUYER_PAY',
+                            createTime: new Date().toISOString()
+                        };
+                        // 保存到localStorage以便演示
+                        localStorage.setItem('alipayOrders', JSON.stringify(this.orders));
+                        console.log('订单已保存:', orderData.orderId);
+                    },
+                    
+                    /**
+                     * @description 更新订单状态
+                     * @param {string} orderId - 订单ID
+                     * @param {string} status - 订单状态
+                     */
+                    updateOrderStatus: function(orderId, status) {
+                        if (this.orders[orderId]) {
+                            this.orders[orderId].status = status;
+                            this.orders[orderId].updateTime = new Date().toISOString();
+                            
+                            // 保存到localStorage以便演示
+                            localStorage.setItem('alipayOrders', JSON.stringify(this.orders));
+                            console.log('订单状态已更新:', orderId, status);
+                            
+                            // 分发订单状态变更事件
+                            const event = new CustomEvent('orderStatusChanged', {
+                                detail: {
+                                    orderId: orderId,
+                                    status: status
+                                }
+                            });
+                            document.dispatchEvent(event);
+                            
+                            return true;
+                        }
+                        return false;
+                    },
+                    
+                    /**
+                     * @description 获取订单信息
+                     * @param {string} orderId - 订单ID
+                     * @returns {Object|null} - 订单信息
+                     */
+                    getOrder: function(orderId) {
+                        return this.orders[orderId] || null;
+                    },
+                    
+                    /**
+                     * @description 从本地存储恢复订单数据
+                     */
+                    restoreOrders: function() {
+                        const savedOrders = localStorage.getItem('alipayOrders');
+                        if (savedOrders) {
+                            try {
+                                this.orders = JSON.parse(savedOrders);
+                                console.log('已恢复订单数据');
+                            } catch (e) {
+                                console.error('恢复订单数据失败:', e);
+                            }
+                        }
+                    }
+                };
+                
+                // 恢复之前保存的订单
+                orderStorage.restoreOrders();
+                
+                /**
+                 * @description 处理支付宝回调
+                 * @param {Object} callbackData - 回调数据
+                 */
+                function handleAlipayCallback(callbackData) {
+                    // 实际项目中需要验证签名，确保回调真实性
+                    const { out_trade_no, trade_status } = callbackData;
+                    
+                    // 更新订单状态
+                    if (orderStorage.updateOrderStatus(out_trade_no, trade_status)) {
+                        // 显示支付结果
+                        showPaymentResult(out_trade_no, trade_status);
+                        
+                        // 如果支付成功，同步到网站其他部分
+                        if (trade_status === 'TRADE_SUCCESS') {
+                            syncPaymentToWebsite(out_trade_no);
+                        }
+                    }
+                }
+                
+                /**
+                 * @description 显示支付结果
+                 * @param {string} orderId - 订单ID
+                 * @param {string} status - 支付状态
+                 */
+                function showPaymentResult(orderId, status) {
+                    const order = orderStorage.getOrder(orderId);
+                    if (!order) return;
+                    
+                    // 创建支付结果显示区域
+                    let resultHtml = '';
+                    let statusClass = '';
+                    
+                    if (status === 'TRADE_SUCCESS') {
+                        statusClass = 'bg-green-100 text-green-800 border-green-200';
+                        resultHtml = `
+                            <div class="flex items-center">
+                                <svg class="w-6 h-6 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span class="font-medium">支付成功</span>
+                            </div>
+                            <p class="mt-2 text-sm">订单金额: ￥${order.totalAmount}</p>
+                            <p class="text-sm">订单编号: ${orderId}</p>
+                            <p class="text-sm">支付时间: ${new Date().toLocaleString()}</p>
+                        `;
+                    } else if (status === 'TRADE_CLOSED') {
+                        statusClass = 'bg-red-100 text-red-800 border-red-200';
+                        resultHtml = `
+                            <div class="flex items-center">
+                                <svg class="w-6 h-6 text-red-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                                <span class="font-medium">支付已取消</span>
+                            </div>
+                            <p class="mt-2 text-sm">订单金额: ￥${order.totalAmount}</p>
+                            <p class="text-sm">订单编号: ${orderId}</p>
+                        `;
+                    } else {
+                        statusClass = 'bg-yellow-100 text-yellow-800 border-yellow-200';
+                        resultHtml = `
+                            <div class="flex items-center">
+                                <svg class="w-6 h-6 text-yellow-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span class="font-medium">等待支付</span>
+                            </div>
+                            <p class="mt-2 text-sm">订单金额: ￥${order.totalAmount}</p>
+                            <p class="text-sm">订单编号: ${orderId}</p>
+                            <p class="text-sm">请尽快完成支付</p>
+                        `;
+                    }
+                    
+                    // 显示支付结果
+                    const resultElement = document.getElementById('payment-result');
+                    if (!resultElement) {
+                        const container = document.createElement('div');
+                        container.id = 'payment-result';
+                        container.className = `mt-8 p-4 rounded-lg border ${statusClass}`;
+                        container.innerHTML = resultHtml;
+                        
+                        const mainContent = document.querySelector('main');
+                        if (mainContent) {
+                            mainContent.appendChild(container);
+                            
+                            // 滚动到支付结果区域
+                            container.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    } else {
+                        resultElement.className = `mt-8 p-4 rounded-lg border ${statusClass}`;
+                        resultElement.innerHTML = resultHtml;
+                    }
+                }
+                
+                /**
+                 * @description 同步支付结果到网站其他部分
+                 * @param {string} orderId - 订单ID
+                 */
+                function syncPaymentToWebsite(orderId) {
+                    const order = orderStorage.getOrder(orderId);
+                    if (!order) return;
+                    
+                    // 1. 更新用户账户信息（模拟）
+                    updateUserAccountInfo(order);
+                    
+                    // 2. 更新课程访问权限（模拟）
+                    updateCourseAccess(order);
+                    
+                    // 3. 创建订单记录（模拟）
+                    createOrderRecord(order);
+                    
+                    // 4. 发送课程邀请邮件（模拟）
+                    sendCourseInvitation(order);
+                    
+                    console.log('支付结果已同步到网站', order);
+                }
+                
+                /**
+                 * @description 更新用户账户信息（模拟）
+                 * @param {Object} order - 订单信息
+                 */
+                function updateUserAccountInfo(order) {
+                    // 实际项目中，这里会调用API更新用户数据库
+                    console.log('更新用户账户信息:', order.buyerName, order.subject);
+                    
+                    // 模拟将用户信息存储到localStorage
+                    const userInfo = {
+                        name: order.buyerName,
+                        phone: order.buyerPhone,
+                        email: order.buyerEmail,
+                        courses: [order.subject]
+                    };
+                    
+                    let savedUsers = {};
+                    try {
+                        const usersJson = localStorage.getItem('websiteUsers');
+                        if (usersJson) {
+                            savedUsers = JSON.parse(usersJson);
+                        }
+                    } catch (e) {
+                        console.error('解析用户数据失败:', e);
+                    }
+                    
+                    // 使用电话号码作为用户ID
+                    const userId = order.buyerPhone;
+                    
+                    if (savedUsers[userId]) {
+                        // 如果用户已存在，添加新课程
+                        if (!savedUsers[userId].courses.includes(order.subject)) {
+                            savedUsers[userId].courses.push(order.subject);
+                        }
+                    } else {
+                        // 新用户
+                        savedUsers[userId] = userInfo;
+                    }
+                    
+                    localStorage.setItem('websiteUsers', JSON.stringify(savedUsers));
+                }
+                
+                /**
+                 * @description 更新课程访问权限（模拟）
+                 * @param {Object} order - 订单信息
+                 */
+                function updateCourseAccess(order) {
+                    // 实际项目中，这里会调用API更新课程权限数据库
+                    console.log('更新课程访问权限:', order.buyerPhone, order.subject);
+                    
+                    // 模拟保存课程访问权限
+                    const courseAccess = {
+                        userId: order.buyerPhone,
+                        courseName: order.subject,
+                        accessGranted: true,
+                        expiryDate: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString() // 一年后
+                    };
+                    
+                    let savedAccess = [];
+                    try {
+                        const accessJson = localStorage.getItem('courseAccess');
+                        if (accessJson) {
+                            savedAccess = JSON.parse(accessJson);
+                        }
+                    } catch (e) {
+                        console.error('解析课程访问数据失败:', e);
+                    }
+                    
+                    // 添加新的访问记录
+                    savedAccess.push(courseAccess);
+                    localStorage.setItem('courseAccess', JSON.stringify(savedAccess));
+                }
+                
+                /**
+                 * @description 创建订单记录（模拟）
+                 * @param {Object} order - 订单信息
+                 */
+                function createOrderRecord(order) {
+                    // 实际项目中，这里会调用API创建订单记录
+                    console.log('创建订单记录:', order.orderId);
+                    
+                    // 模拟保存订单记录
+                    const orderRecord = {
+                        orderId: order.orderId,
+                        userId: order.buyerPhone,
+                        courseName: order.subject,
+                        amount: order.totalAmount,
+                        paymentMethod: 'Alipay',
+                        status: 'COMPLETED',
+                        createTime: new Date().toISOString()
+                    };
+                    
+                    let savedRecords = [];
+                    try {
+                        const recordsJson = localStorage.getItem('orderRecords');
+                        if (recordsJson) {
+                            savedRecords = JSON.parse(recordsJson);
+                        }
+                    } catch (e) {
+                        console.error('解析订单记录失败:', e);
+                    }
+                    
+                    // 添加新的订单记录
+                    savedRecords.push(orderRecord);
+                    localStorage.setItem('orderRecords', JSON.stringify(savedRecords));
+                }
+                
+                /**
+                 * @description 发送课程邀请邮件（模拟）
+                 * @param {Object} order - 订单信息
+                 */
+                function sendCourseInvitation(order) {
+                    // 实际项目中，这里会调用邮件发送API
+                    console.log('发送课程邀请邮件:', order.buyerEmail, order.subject);
+                    
+                    // 模拟发送邮件
+                    const emailContent = `
+                        尊敬的 ${order.buyerName}：
+                        
+                        感谢您购买"${order.subject}"课程！
+                        
+                        您的订单信息如下：
+                        - 订单号：${order.orderId}
+                        - 金额：￥${order.totalAmount}
+                        - 下单时间：${new Date().toLocaleString()}
+                        
+                        课程访问方式：
+                        1. 登录网站：https://courses.example.com
+                        2. 使用您的手机号码 ${order.buyerPhone} 登录
+                        3. 在"我的课程"中访问已购买的课程
+                        
+                        如有任何问题，请联系我们：
+                        - 电话：400-123-4567
+                        - 邮箱：support@example.com
+                        
+                        祝学习愉快！
+                        
+                        职场人加油站团队
+                    `;
+                    
+                    // 模拟保存邮件记录
+                    let emailLogs = [];
+                    try {
+                        const logsJson = localStorage.getItem('emailLogs');
+                        if (logsJson) {
+                            emailLogs = JSON.parse(logsJson);
+                        }
+                    } catch (e) {
+                        console.error('解析邮件记录失败:', e);
+                    }
+                    
+                    emailLogs.push({
+                        to: order.buyerEmail,
+                        subject: `职场人加油站 - ${order.subject} 课程购买成功`,
+                        content: emailContent,
+                        sentTime: new Date().toISOString()
+                    });
+                    
+                    localStorage.setItem('emailLogs', JSON.stringify(emailLogs));
+                }
+                
+                /**
+                 * @description 模拟支付宝支付回调
+                 * @param {string} orderId - 订单ID
+                 * @param {string} status - 支付状态
+                 */
+                function simulateAlipayCallback(orderId, status) {
+                    // 模拟支付宝回调数据
+                    const callbackData = {
+                        app_id: '2021000000000000',
+                        auth_app_id: '2021000000000000',
+                        charset: 'utf-8',
+                        method: 'alipay.trade.page.pay.return',
+                        out_trade_no: orderId,
+                        seller_id: '2088000000000000',
+                        timestamp: new Date().toISOString(),
+                        total_amount: orderStorage.getOrder(orderId).totalAmount,
+                        trade_no: 'T' + Date.now(),
+                        trade_status: status,
+                        version: '1.0'
+                    };
+                    
+                    // 处理回调
+                    handleAlipayCallback(callbackData);
+                }
+                
+                // 监听订单状态变更事件
+                document.addEventListener('orderStatusChanged', function(e) {
+                    const { orderId, status } = e.detail;
+                    console.log('订单状态变更:', orderId, status);
+                    
+                    // 在页面上更新状态显示
+                    const statusElement = document.getElementById('order-status');
+                    if (statusElement) {
+                        if (status === 'TRADE_SUCCESS') {
+                            statusElement.textContent = '支付成功';
+                            statusElement.className = 'text-green-600 font-medium';
+                        } else if (status === 'TRADE_CLOSED') {
+                            statusElement.textContent = '已关闭';
+                            statusElement.className = 'text-red-600 font-medium';
+                        } else {
+                            statusElement.textContent = '处理中';
+                            statusElement.className = 'text-yellow-600 font-medium';
+                        }
+                    }
+                });
+                
+                // 将函数暴露给全局，以便从其他地方调用（仅用于演示）
+                window.simulateAlipayCallback = simulateAlipayCallback;
+                window.orderStorage = orderStorage;
+                
+                return {
+                    handleCallback: handleAlipayCallback,
+                    simulateCallback: simulateAlipayCallback,
+                    orderStorage: orderStorage
+                };
+            }
+            
+            // 初始化支付宝同步功能
+            const alipaySync = initAlipaySync();
+            
+            /**
+             * @description 重写createAlipayOrder函数，整合订单存储
+             */
+            const originalCreateAlipayOrder = createAlipayOrder;
+            createAlipayOrder = function(orderInfo) {
+                // 先保存订单
+                alipaySync.orderStorage.saveOrder(orderInfo);
+                
+                // 调用原始函数
+                return originalCreateAlipayOrder(orderInfo).then(result => {
+                    // 添加自动模拟支付回调（仅用于演示）
+                    setTimeout(() => {
+                        console.log('模拟支付宝回调 - 支付成功');
+                        alipaySync.simulateCallback(orderInfo.orderId, 'TRADE_SUCCESS');
+                    }, 5000); // 5秒后模拟支付成功
+                    
+                    return result;
+                });
+            };
+            
+            /**
+             * @description 重写queryAlipayOrderStatus函数，整合订单存储
+             */
+            const originalQueryStatus = queryAlipayOrderStatus;
+            queryAlipayOrderStatus = function(outTradeNo) {
+                // 从订单存储中获取状态
+                const order = alipaySync.orderStorage.getOrder(outTradeNo);
+                if (order && order.status === 'TRADE_SUCCESS') {
+                    return Promise.resolve({
+                        status: 'success',
+                        tradeStatus: 'TRADE_SUCCESS'
+                    });
+                }
+                
+                // 调用原始函数
+                return originalQueryStatus(outTradeNo);
+            };
         });
     </script>
 </body>
