@@ -39,6 +39,39 @@
                     返回首页
                 </a>
             </div>
+            <!-- 支付方式LOGO选择 -->
+            <div class="flex flex-wrap gap-8 mb-8 justify-center">
+                <div class="flex flex-col items-center group cursor-pointer" id="alipay-btn" title="支付宝扫码支付">
+                    <div class="rounded-full shadow-lg bg-white p-3 hover:shadow-xl border-2 border-transparent hover:border-[#00A0E9] transition">
+                        <svg viewBox="0 0 48 48" fill="none" class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="48" height="48" rx="8" fill="#00A0E9"/>
+                            <path d="M24 12L28 24H20L24 12Z" fill="white"/>
+                        </svg>
+                    </div>
+                    <span class="mt-2 text-sm text-[#00A0E9] group-hover:font-bold">支付宝</span>
+                </div>
+                <div class="flex flex-col items-center group cursor-pointer" id="wechat-btn" title="微信扫码支付">
+                    <div class="rounded-full shadow-lg bg-white p-3 hover:shadow-xl border-2 border-transparent hover:border-[#07C160] transition">
+                        <svg viewBox="0 0 48 48" fill="none" class="w-12 h-12" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="48" height="48" rx="12" fill="#07C160"/>
+                            <circle cx="18" cy="24" r="4" fill="white"/>
+                            <circle cx="30" cy="24" r="4" fill="white"/>
+                        </svg>
+                    </div>
+                    <span class="mt-2 text-sm text-[#07C160] group-hover:font-bold">微信</span>
+                </div>
+                <div class="flex flex-col items-center group cursor-pointer" id="paypal-btn" title="PayPal支付">
+                    <div class="rounded-full shadow-lg bg-white p-3 hover:shadow-xl border-2 border-transparent hover:border-[#003087] transition">
+                        <svg viewBox="0 0 48 48" fill="none" class="w-12 h-12" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="48" height="48" rx="12" fill="#003087"/>
+                            <text x="12" y="32" font-size="20" fill="#fff" font-family="Arial" font-weight="bold">P</text>
+                        </svg>
+                    </div>
+                    <span class="mt-2 text-sm text-[#003087] group-hover:font-bold">PayPal</span>
+                </div>
+            </div>
+            <!-- 展示二维码的区域 -->
+            <div id="qrcode-container" class="mt-6"></div>
         </div>
     </main>
 
@@ -47,6 +80,99 @@
             <p class="text-center text-gray-500 text-sm">© 2023 认证培训网 版权所有</p>
         </div>
     </footer>
+
+    <!-- 引入二维码生成库（qrious） -->
+    <script src="https://cdn.jsdelivr.net/npm/qrious/dist/qrious.min.js"></script>
+    <script>
+    /**
+     * 生成二维码的通用函数
+     * @param {string} url - 二维码内容
+     * @param {string} payType - 支付类型（alipay/wechat）
+     */
+    function showQRCode(url, payType) {
+        let container = document.getElementById('qrcode-container');
+        container.innerHTML = '';
+        var qr = new QRious({
+            value: url,
+            size: 220
+        });
+        let canvas = qr.canvas;
+        canvas.id = payType + '-qrcode';
+        container.appendChild(canvas);
+        // 提示文字
+        let tip = document.createElement('div');
+        tip.className = 'text-center text-gray-600 mt-2';
+        tip.innerText = payType === 'alipay' ? '请使用支付宝App扫码完成支付' : '请使用微信App扫码完成支付';
+        container.appendChild(tip);
+    }
+
+    // 支付宝扫码支付
+    document.getElementById('alipay-btn').addEventListener('click', function() {
+        fetch('/api/alipay/qrcode', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ courseId: 'xxx', amount: 199 })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.qrCodeUrl) {
+                showQRCode(data.qrCodeUrl, 'alipay');
+            } else {
+                alert('获取二维码失败，请稍后重试');
+            }
+        })
+        .catch(() => alert('支付请求失败，请稍后重试'));
+    });
+
+    // 微信扫码支付
+    document.getElementById('wechat-btn').addEventListener('click', function() {
+        fetch('/api/wechat/qrcode', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ courseId: 'xxx', amount: 199 })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.qrCodeUrl) {
+                showQRCode(data.qrCodeUrl, 'wechat');
+            } else {
+                alert('获取二维码失败，请稍后重试');
+            }
+        })
+        .catch(() => alert('支付请求失败，请稍后重试'));
+    });
+
+    // PayPal支付
+    document.getElementById('paypal-btn').addEventListener('click', function() {
+        fetch('/api/paypal/url', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ courseId: 'xxx', amount: 199 })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.payUrl) {
+                window.location.href = data.payUrl;
+            } else {
+                alert('获取PayPal支付链接失败，请稍后重试');
+            }
+        })
+        .catch(() => alert('支付请求失败，请稍后重试'));
+    });
+
+    /**
+     * @file 支付宝支付SDK配置示例
+     * @description 配置AppID、应用私钥、支付宝公钥
+     */
+    const AlipaySdk = require('alipay-sdk').default;
+    const fs = require('fs');
+
+    const alipaySdk = new AlipaySdk({
+        appId: '2021005142634803',
+        privateKey: fs.readFileSync('./app_private_key.pem', 'ascii'),
+        alipayPublicKey: `MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmu41tRv466AQsBytVH8T6R8EN6dqUcKQyt8yVZIAVQQYutrFcBXr+ZRuew6M6SlkdZFrb/A9c+I3wK+dDR0bbg7raAhAxnm8dEMSdvehHqLaWcLl/yQKrqK+jD6LqSp0X4tyyM+yzeY7xaRd/rYbrblF27JKwlZRNqZzNEQP9QJeyMOYOGuTa0z1hqnmnmd48kJe/MGLVFScRSFCgPlimbpU9iCJatrMljBWGHuBm+1PtHREhOwVYSOpkX0/OSfcf7xfTGuH8Gbuyax702bPTZQ5BaR+O+KIHfw8EKlxhvn9TmWAuLXQWPcnfDaupMoYcc9YnUGpN+u+sIdFGP500wIDAQAB`
+    });
+    </script>
 </body>
 </html>
  

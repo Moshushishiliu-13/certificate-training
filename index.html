@@ -29,954 +29,319 @@
     </script>
 </head>
 <body class="bg-gray-50 text-gray-800">
-    <!-- 头部导航 -->
-    <header class="bg-pro-blue text-white shadow-lg">
-        <div class="container mx-auto px-4 py-3 flex flex-wrap items-center justify-between">
-            <div class="flex items-center">
-                <span class="text-2xl font-bold">认证培训网</span>
+    <!-- 顶部导航栏 -->
+    <header class="bg-white shadow">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <span class="text-2xl font-bold text-pro-blue">认证培训网</span>
             </div>
-            <nav class="hidden md:flex space-x-6">
-                <a href="#certification" class="hover:text-cert-gold transition">认证培训体系</a>
-                <a href="#cases" class="hover:text-cert-gold transition">成功案例</a>
-                <a href="#curriculum" class="hover:text-cert-gold transition">课程体系</a>
-                <a href="#cooperation" class="hover:text-cert-gold transition">企业合作</a>
-                <button id="add-favorite" class="bg-cert-gold hover:bg-yellow-400 text-pro-blue font-bold py-2 px-4 rounded-full transition flex items-center">
-                    <svg class="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                    </svg>
-                    收藏本站
-                </button>
+            <nav class="space-x-6">
+                <a href="#curriculum" class="text-gray-700 hover:text-pro-blue">培训训练营陪跑</a>
+                <a href="#consulting" class="text-gray-700 hover:text-pro-blue">认证咨询体系</a>
+                <a href="#cases" class="text-gray-700 hover:text-pro-blue">学员案例</a>
+                <a href="#faq" class="text-gray-700 hover:text-pro-blue">常见问题</a>
+                <a href="courses.html" class="text-white bg-pro-blue px-4 py-2 rounded hover:bg-blue-700 transition">立即报名</a>
             </nav>
-            <div class="md:hidden">
-                <button id="menu-toggle" class="text-white focus:outline-none">
-                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <div id="mobile-menu" class="hidden md:hidden px-4 py-2">
-            <a href="#certification" class="block py-2 hover:text-cert-gold">认证培训体系</a>
-            <a href="#cases" class="block py-2 hover:text-cert-gold">成功案例</a>
-            <a href="#curriculum" class="block py-2 hover:text-cert-gold">课程体系</a>
-            <a href="#cooperation" class="block py-2 hover:text-cert-gold">企业合作</a>
-            <button id="add-favorite-mobile" class="mt-2 bg-cert-gold hover:bg-yellow-400 text-pro-blue font-bold py-2 px-4 rounded-full transition flex items-center">
-                <svg class="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                </svg>
-                收藏本站
-            </button>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="relative bg-pro-blue text-white py-16 md:py-24">
-        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')] bg-cover bg-center opacity-20"></div>
-        <div class="container mx-auto px-4 relative z-10">
-            <div class="max-w-3xl">
-                <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-6">专家级认证培训解决方案</h1>
-                <p class="text-xl md:text-2xl mb-8">融合ISO国际标准与行业最佳实践，打造您的职业竞争力</p>
-                <div class="bg-white/10 backdrop-blur-sm p-5 rounded-lg border border-white/20 mb-8">
-                    <p class="text-lg mb-4">已与<span class="text-cert-gold font-bold">500+</span>强企业建立认证培训合作伙伴关系</p>
-                    <p class="text-lg mb-2">MIT/哈佛商学院教学体系本土化</p>
-                    <p class="text-lg">98%认证培训通过率保障体系</p>
-                </div>
-                <div class="flex flex-wrap gap-4">
-                    <a href="#assessment" class="bg-cert-gold hover:bg-yellow-400 text-pro-blue font-bold py-3 px-6 rounded-full transition shadow-lg">
-                        免费职业能力测评
-                    </a>
-                    <a href="#contact" class="bg-transparent hover:bg-white/10 text-white border-2 border-white py-3 px-6 rounded-full transition">
-                        预约专家咨询
-                    </a>
-                </div>
-            </div>
+    <!-- Banner区块 -->
+    <section class="bg-pro-blue text-white py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl font-bold mb-4">专业认证培训，助力职业成长</h1>
+            <p class="text-lg mb-8">系统课程体系，权威师资团队，助您轻松通过各类认证考试</p>
+            <a href="courses.html" class="inline-block bg-cert-gold text-pro-blue font-bold px-8 py-3 rounded shadow hover:bg-yellow-400 transition">立即报名</a>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section id="features" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-pro-blue mb-3">四大核心优势</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">国际认证培训标准与本土化教学实践的双核优势，为您的职业发展保驾护航</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- 优势1 -->
-                <div class="bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-xl transition border-t-4 border-pro-blue">
-                    <div class="bg-pro-blue w-12 h-12 rounded-full flex items-center justify-center mb-4 text-white">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">国际权威认证培训</h3>
-                    <p class="text-gray-600">直接对接全球顶级认证培训机构，确保证书含金量与国际接轨</p>
-                </div>
-                
-                <!-- 优势2 -->
-                <div class="bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-xl transition border-t-4 border-tech-silver">
-                    <div class="bg-tech-silver w-12 h-12 rounded-full flex items-center justify-center mb-4 text-pro-blue">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">本土化教学实践</h3>
-                    <p class="text-gray-600">结合中国市场实际需求，提供符合本土企业标准的实战培训</p>
-                </div>
-                
-                <!-- 优势3 -->
-                <div class="bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-xl transition border-t-4 border-cert-gold">
-                    <div class="bg-cert-gold w-12 h-12 rounded-full flex items-center justify-center mb-4 text-pro-blue">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">全流程服务体系</h3>
-                    <p class="text-gray-600">从学习、考试到认证培训就业，提供一站式闭环服务支持</p>
-                </div>
-                
-                <!-- 优势4 -->
-                <div class="bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-xl transition border-t-4 border-pro-blue">
-                    <div class="bg-pro-blue w-12 h-12 rounded-full flex items-center justify-center mb-4 text-white">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">精英师资团队</h3>
-                    <p class="text-gray-600">10+博士级学者与行业认证专家，确保教学质量与实践落地</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- How it works -->
-    <section id="how-it-works" class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-pro-blue mb-3">四步学习流程</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">从入门到精通，从学习到就业，我们为您提供全方位的支持</p>
-            </div>
-            
-            <div class="relative">
-                <!-- 连接线 - 仅在中等屏幕及以上显示 -->
-                <div class="hidden md:block absolute top-1/2 left-0 right-0 h-1 bg-pro-blue transform -translate-y-1/2 z-0"></div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative z-10">
-                    <!-- 步骤1 -->
-                    <div class="flex flex-col items-center">
-                        <div class="bg-pro-blue text-white w-16 h-16 rounded-full flex items-center justify-center mb-4 text-2xl font-bold shadow-lg">1</div>
-                        <div class="bg-white p-6 rounded-lg shadow-md text-center w-full">
-                            <h3 class="text-xl font-bold mb-2">个性化评估</h3>
-                            <p class="text-gray-600">根据您的背景和目标，提供专业职业能力评估</p>
-                        </div>
-                    </div>
-                    
-                    <!-- 步骤2 -->
-                    <div class="flex flex-col items-center">
-                        <div class="bg-pro-blue text-white w-16 h-16 rounded-full flex items-center justify-center mb-4 text-2xl font-bold shadow-lg">2</div>
-                        <div class="bg-white p-6 rounded-lg shadow-md text-center w-full">
-                            <h3 class="text-xl font-bold mb-2">定制学习方案</h3>
-                            <p class="text-gray-600">为您量身打造认证培训学习路径与技能提升计划</p>
-                        </div>
-                    </div>
-                    
-                    <!-- 步骤3 -->
-                    <div class="flex flex-col items-center">
-                        <div class="bg-pro-blue text-white w-16 h-16 rounded-full flex items-center justify-center mb-4 text-2xl font-bold shadow-lg">3</div>
-                        <div class="bg-white p-6 rounded-lg shadow-md text-center w-full">
-                            <h3 class="text-xl font-bold mb-2">系统化培训</h3>
-                            <p class="text-gray-600">专家授课与实战演练相结合，掌握核心技能</p>
-                        </div>
-                    </div>
-                    
-                    <!-- 步骤4 -->
-                    <div class="flex flex-col items-center">
-                        <div class="bg-pro-blue text-white w-16 h-16 rounded-full flex items-center justify-center mb-4 text-2xl font-bold shadow-lg">4</div>
-                        <div class="bg-white p-6 rounded-lg shadow-md text-center w-full">
-                            <h3 class="text-xl font-bold mb-2">认证培训与就业</h3>
-                            <p class="text-gray-600">获得国际认可证书，对接优质企业资源</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 用户注册部分 -->
-    <section id="registration" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-wrap items-center">
-                <div class="w-full lg:w-1/2 mb-10 lg:mb-0 lg:pr-10">
-                    <h2 class="text-3xl font-bold text-pro-blue mb-6">开启您的认证培训之旅</h2>
-                    <p class="text-xl text-gray-700 mb-6">填写您的基本信息，获取免费的职业能力测评和个性化认证培训学习方案</p>
-                    
-                    <div class="bg-gray-50 p-6 rounded-lg border-l-4 border-cert-gold mb-6">
-                        <h3 class="font-bold text-lg mb-2">您将获得：</h3>
-                        <ul class="space-y-2">
-                            <li class="flex items-start">
-                                <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                职业竞争力评估报告
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                认证培训匹配度星级分析
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                推荐认证培训路径规划
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                技能提升图谱
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                学习方案依据说明
-                            </li>
-                        </ul>
-                    </div>
-                    
-                    <!-- 倒计时组件 -->
-                    <div class="bg-pro-blue text-white p-4 rounded-lg flex items-center">
-                        <div class="mr-4">
-                            <span class="text-cert-gold font-bold">限时优惠</span>
-                        </div>
-                        <div>
-                            <div class="font-bold">距离活动结束还剩：</div>
-                            <div class="flex space-x-2 mt-1">
-                                <div class="bg-white text-pro-blue font-bold px-2 py-1 rounded">
-                                    <span id="days">02</span>
-                                </div>
-                                <div class="text-white">:</div>
-                                <div class="bg-white text-pro-blue font-bold px-2 py-1 rounded">
-                                    <span id="hours">12</span>
-                                </div>
-                                <div class="text-white">:</div>
-                                <div class="bg-white text-pro-blue font-bold px-2 py-1 rounded">
-                                    <span id="minutes">45</span>
-                                </div>
-                                <div class="text-white">:</div>
-                                <div class="bg-white text-pro-blue font-bold px-2 py-1 rounded">
-                                    <span id="seconds">30</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="w-full lg:w-1/2">
-                    <div class="bg-gray-50 p-8 rounded-lg shadow-lg">
-                        <h3 class="text-2xl font-bold mb-6 text-center">注册获取免费测评</h3>
-                        
-                        <form id="assessment-form" class="space-y-4">
-                            <div>
-                                <label for="name" class="block text-gray-700 mb-1">姓名</label>
-                                <input type="text" id="name" name="name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pro-blue" required>
-                            </div>
-                            
-                            <div>
-                                <label for="education" class="block text-gray-700 mb-1">最高学历</label>
-                                <select id="education" name="education" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pro-blue">
-                                    <option value="">请选择</option>
-                                    <option value="专科">专科</option>
-                                    <option value="本科">本科</option>
-                                    <option value="硕士">硕士</option>
-                                    <option value="博士">博士</option>
-                                    <option value="其他">其他</option>
-                                </select>
-                            </div>
-                            
-                            <div>
-                                <label for="career-direction" class="block text-gray-700 mb-1">职业方向</label>
-                                <select id="career-direction" name="career-direction" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pro-blue">
-                                    <option value="">请选择</option>
-                                    <option value="IT技术">IT技术</option>
-                                    <option value="项目管理">项目管理</option>
-                                    <option value="数据分析">数据分析</option>
-                                    <option value="产品设计">产品设计</option>
-                                    <option value="营销管理">营销管理</option>
-                                    <option value="财务金融">财务金融</option>
-                                    <option value="人力资源">人力资源</option>
-                                    <option value="其他">其他</option>
-                                </select>
-                            </div>
-                            
-                            <div>
-                                <label for="learning-goal" class="block text-gray-700 mb-1">学习目标</label>
-                                <textarea id="learning-goal" name="learning-goal" rows="3" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pro-blue" placeholder="请简要描述您的学习目标和期望"></textarea>
-                            </div>
-                            
-                            <div>
-                                <label for="phone" class="block text-gray-700 mb-1">手机号码</label>
-                                <input type="tel" id="phone" name="phone" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pro-blue" required>
-                            </div>
-                            
-                            <button type="submit" class="w-full bg-pro-blue hover:bg-blue-900 text-white font-bold py-3 px-4 rounded-lg transition shadow-md">
-                                提交并获取测评报告
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 课程体系 -->
-    <section id="curriculum" class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-pro-blue mb-3">认证培训课程</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">认证培训课程 海量工厂管理认证培训课程，助力管理人员职业成长</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- 课程类别1 -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition">
-                    <div class="bg-pro-blue h-2"></div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-3">项目管理认证培训</h3>
-                        <p class="text-gray-600 mb-4">国际认可的项目管理专业认证培训，提升您的项目领导力</p>
-                        <ul class="space-y-2 mb-6">
-                            <li class="flex items-start">
-                                <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                PMP®项目管理专业人士
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                PRINCE2®项目管理
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                敏捷Scrum Master认证培训
-                            </li>
-                        </ul>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center">
-                                <span class="text-yellow-500">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+    <main>
+        <!-- 培训训练营陪跑（课程体系） -->
+        <section id="curriculum" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-12 text-pro-blue">培训训练营陪跑</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- 质量管理体系内审员课程 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-4 text-pro-blue">质量管理体系内审员课程</h3>
+                            <p class="text-gray-600 mb-4">系统掌握质量管理体系内审技能，提升企业质量管理水平。</p>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-cert-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                                     </svg>
-                                </span>
-                            </div>
-                            <a href="courses.html" class="text-pro-blue font-bold hover:underline">了解详情</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- 课程类别2 -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition">
-                    <div class="bg-tech-silver h-2"></div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-3">职场人加油站</h3>
-                        <p class="text-gray-600 mb-4">全面的质量管理、项目管理和ESG培训课程，助力工厂管理人员职业成长</p>
-                        <ul class="space-y-2 mb-6">
-                            <li class="flex items-start">
-                                <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                ISO 9001/IATF 16949认证
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                PMP®项目管理认证培训
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                ESG可持续发展报告认证
-                            </li>
-                        </ul>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center">
-                                <span class="text-yellow-500">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                    内审技能培训
+                                </li>
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-cert-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                                     </svg>
-                                </span>
-                            </div>
-                            <a href="courses.html" class="text-pro-blue font-bold hover:underline">了解详情</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- 课程类别3 -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition">
-                    <div class="bg-cert-gold h-2"></div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-3">雅思培训</h3>
-                        <p class="text-gray-600 mb-4">提升英语水平，获得全球认可的雅思成绩，助力留学和职业发展</p>
-                        <ul class="space-y-2 mb-6">
-                            <li class="flex items-start">
-                                <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                雅思听力与口语强化训练
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                雅思阅读与写作技巧培训
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                雅思考试冲刺班
-                            </li>
-                        </ul>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center">
-                                <span class="text-yellow-500">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                    实战案例分析
+                                </li>
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-cert-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                                     </svg>
-                                </span>
+                                    证书认证支持
+                                </li>
+                            </ul>
+                            <a href="courses.html" class="block text-center bg-pro-blue text-white py-2 px-4 rounded hover:bg-blue-700 transition">了解详情</a>
+                        </div>
+                    </div>
+
+                    <!-- 证书考试培训专栏课程 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-4 text-pro-blue">证书考试培训专栏课程</h3>
+                            <p class="text-gray-600 mb-4">专业认证考试培训，助您顺利通过各类质量管理认证考试。</p>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-cert-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    考试重点解析
+                                </li>
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-cert-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    模拟考试训练
+                                </li>
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-cert-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    一对一辅导
+                                </li>
+                            </ul>
+                            <a href="courses.html" class="block text-center bg-pro-blue text-white py-2 px-4 rounded hover:bg-blue-700 transition">了解详情</a>
+                        </div>
+                    </div>
+
+                    <!-- 质量管理工具课程 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-4 text-pro-blue">质量管理工具课程</h3>
+                            <p class="text-gray-600 mb-4">掌握先进质量管理工具，提升企业质量管理效率。</p>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-cert-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    工具应用培训
+                                </li>
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-cert-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    实操演练
+                                </li>
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-cert-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    案例分享
+                                </li>
+                            </ul>
+                            <a href="courses.html" class="block text-center bg-pro-blue text-white py-2 px-4 rounded hover:bg-blue-700 transition">了解详情</a>
+                        </div>
+                    </div>
+
+                    <!-- 精益六西格玛课程 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-4 text-pro-blue">精益六西格玛课程</h3>
+                            <p class="text-gray-600 mb-4">系统学习精益六西格玛方法论，提升企业运营效率。</p>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-cert-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    方法论培训
+                                </li>
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-cert-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    项目实践
+                                </li>
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-cert-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    专家指导
+                                </li>
+                            </ul>
+                            <a href="courses.html" class="block text-center bg-pro-blue text-white py-2 px-4 rounded hover:bg-blue-700 transition">了解详情</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 第三方认证、审核及咨询（认证咨询体系） -->
+        <section id="consulting" class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-12 text-pro-blue">第三方认证、审核及咨询（认证咨询体系）</h2>
+                <div class="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-gray-50 rounded-lg p-6 text-center shadow">
+                        <h3 class="text-xl font-bold mb-2 text-pro-blue">各大零售商认证咨询</h3>
+                        <p class="text-gray-600">沃尔玛、亚马逊、家乐福、Costco等零售商认证全流程辅导。</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg p-6 text-center shadow">
+                        <h3 class="text-xl font-bold mb-2 text-pro-blue">客户认证咨询</h3>
+                        <p class="text-gray-600">根据客户要求定制认证辅导，助力顺利通过客户审核。</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg p-6 text-center shadow">
+                        <h3 class="text-xl font-bold mb-2 text-pro-blue">供应商认证咨询</h3>
+                        <p class="text-gray-600">供应链合规提升，供应商审核全流程咨询服务。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 个人提高（自我挑战体系） -->
+        <section id="self-improve" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-12 text-pro-blue">个人提高（自我挑战体系）</h2>
+                <div class="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-lg p-6 text-center shadow">
+                        <h3 class="text-xl font-bold mb-2 text-pro-blue">雅思英语初级</h3>
+                        <p class="text-gray-600">适合英语基础薄弱者，夯实听说读写基本功。</p>
+                    </div>
+                    <div class="bg-white rounded-lg p-6 text-center shadow">
+                        <h3 class="text-xl font-bold mb-2 text-pro-blue">雅思英语中级</h3>
+                        <p class="text-gray-600">提升英语综合能力，突破雅思考试瓶颈。</p>
+                    </div>
+                    <div class="bg-white rounded-lg p-6 text-center shadow">
+                        <h3 class="text-xl font-bold mb-2 text-pro-blue">雅思英语高级</h3>
+                        <p class="text-gray-600">冲刺高分，强化学术英语与实战应用能力。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 学员案例 -->
+        <section id="cases" class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-12 text-pro-blue">学员转型案例</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- 案例卡片 -->
+                    <div class="bg-gray-50 rounded-lg p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-pro-blue rounded-full flex items-center justify-center text-white font-bold">张</div>
+                            <div class="ml-4">
+                                <h3 class="font-bold">张先生</h3>
+                                <p class="text-sm text-gray-600">PMP认证学员</p>
                             </div>
-                            <a href="courses.html" class="text-pro-blue font-bold hover:underline">了解详情</a>
+                        </div>
+                        <p class="text-gray-600 mb-4">"通过PMP认证培训，我成功转型为项目经理，薪资提升了40%。培训内容实用，导师经验丰富。"</p>
+                        <div class="flex items-center text-cert-gold">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            <span class="ml-1">5.0</span>
                         </div>
                     </div>
-                </div>
-            </div>
-            
-            <!-- 更多课程按钮 -->
-            <div class="text-center mt-10">
-                <a href="courses.html" class="inline-flex items-center bg-pro-blue hover:bg-blue-900 text-white font-bold py-3 px-6 rounded-full transition shadow-md">
-                    查看更多认证培训课程
-                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                    </svg>
-                </a>
-            </div>
-        </div>
-    </section>
 
-    <!-- 价格方案 -->
-    <section id="pricing" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-pro-blue mb-3">认证培训套餐</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">灵活多样的培训套餐，满足个人发展和企业团队需求</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- 个人套餐 -->
-                <div class="bg-white rounded-lg shadow-md hover:shadow-xl transition overflow-hidden border border-gray-200">
-                    <div class="p-6 border-b">
-                        <h3 class="text-xl font-bold mb-2">个人成长套餐</h3>
-                        <div class="flex items-end mb-4">
-                            <span class="text-3xl font-bold">¥4,980</span>
-                            <span class="text-gray-500 ml-2">起</span>
+                    <div class="bg-gray-50 rounded-lg p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-pro-blue rounded-full flex items-center justify-center text-white font-bold">李</div>
+                            <div class="ml-4">
+                                <h3 class="font-bold">李女士</h3>
+                                <p class="text-sm text-gray-600">ITIL 4认证学员</p>
+                            </div>
                         </div>
-                        <p class="text-gray-600">适合个人职业提升，灵活学习计划</p>
-                    </div>
-                    <div class="p-6">
-                        <ul class="space-y-3 mb-6">
-                            <li class="flex items-start">
-                                <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                单项认证培训课程培训
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                线上学习资料
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                周末线下研讨
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                1次模拟考试
-                            </li>
-                            <li class="flex items-start text-gray-400">
-                                <svg class="h-5 w-5 text-gray-300 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                                </svg>
-                                专属学习顾问
-                            </li>
-                            <li class="flex items-start text-gray-400">
-                                <svg class="h-5 w-5 text-gray-300 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                                </svg>
-                                就业推荐服务
-                            </li>
-                        </ul>
-                        <a href="#contact" class="block text-center bg-gray-100 hover:bg-gray-200 text-pro-blue font-bold py-3 px-4 rounded-lg transition w-full">
-                            立即咨询
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- 精英套餐 -->
-                <div class="bg-white rounded-lg shadow-xl transform md:-translate-y-4 border-2 border-pro-blue relative overflow-hidden">
-                    <div class="absolute top-0 right-0">
-                        <div class="bg-cert-gold text-pro-blue font-bold py-1 px-4 transform rotate-45 translate-x-4 -translate-y-2">
-                            推荐
+                        <p class="text-gray-600 mb-4">"ITIL 4认证帮助我建立了系统的IT服务管理思维，现在我能更好地管理团队和项目。"</p>
+                        <div class="flex items-center text-cert-gold">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            <span class="ml-1">4.9</span>
                         </div>
                     </div>
-                    <div class="p-6 border-b">
-                        <h3 class="text-xl font-bold mb-2">精英进阶套餐</h3>
-                        <div class="flex items-end mb-4">
-                            <span class="text-3xl font-bold">¥9,980</span>
-                            <span class="text-gray-500 ml-2">起</span>
-                        </div>
-                        <p class="text-gray-600">全方位职业提升计划，一站式认证服务</p>
-                    </div>
-                    <div class="p-6">
-                        <ul class="space-y-3 mb-6">
-                            <li class="flex items-start">
-                                <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                双项认证培训课程培训
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                全套学习资源包
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                12次线下实操训练
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                3次模拟考试
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                专属学习顾问
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                优先就业推荐
-                            </li>
-                        </ul>
-                        <a href="#contact" class="block text-center bg-pro-blue hover:bg-blue-900 text-white font-bold py-3 px-4 rounded-lg transition w-full">
-                            立即咨询
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- 企业团队套餐 -->
-                <div class="bg-white rounded-lg shadow-md hover:shadow-xl transition overflow-hidden border border-gray-200">
-                    <div class="p-6 border-b">
-                        <h3 class="text-xl font-bold mb-2">企业定制套餐</h3>
-                        <div class="flex items-end mb-4">
-                            <span class="text-3xl font-bold">企业定价</span>
-                        </div>
-                        <p class="text-gray-600">团队培训定制方案，提升企业核心竞争力</p>
-                    </div>
-                    <div class="p-6">
-                        <ul class="space-y-3 mb-6">
-                            <li class="flex items-start">
-                                <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                企业内训定制方案
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                多项认证培训团队折扣
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                企业专属培训场地
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                团队认证培训通过保障
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                企业人才发展咨询
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                人才梯队建设方案
-                            </li>
-                        </ul>
-                        <a href="#contact" class="block text-center bg-gray-100 hover:bg-gray-200 text-pro-blue font-bold py-3 px-4 rounded-lg transition w-full">
-                            企业咨询
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- 学员证言 -->
-    <section id="cases" class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-pro-blue mb-3">学员转型案例</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">看看我们的学员如何通过认证培训实现职业突破和薪资提升</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- 学员案例1 -->
-                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-pro-blue w-12 h-12 rounded-full flex items-center justify-center text-white font-bold mr-4">
-                            张
+                    <div class="bg-gray-50 rounded-lg p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-pro-blue rounded-full flex items-center justify-center text-white font-bold">王</div>
+                            <div class="ml-4">
+                                <h3 class="font-bold">王先生</h3>
+                                <p class="text-sm text-gray-600">CISSP认证学员</p>
+                            </div>
                         </div>
-                        <div>
-                            <h3 class="font-bold">张先生</h3>
-                            <p class="text-gray-600 text-sm">IT开发 → 高级项目经理</p>
+                        <p class="text-gray-600 mb-4">"CISSP认证让我在信息安全领域获得了更多机会，现在负责公司的安全架构设计。"</p>
+                        <div class="flex items-center text-cert-gold">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            <span class="ml-1">5.0</span>
                         </div>
-                    </div>
-                    <div class="mb-4">
-                        <div class="flex text-yellow-500 mb-1">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                            </svg>
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                            </svg>
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                            </svg>
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                            </svg>
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <p class="text-gray-700 mb-4">通过PMP和敏捷项目管理双认证，帮助我从开发岗位转型到管理岗位，薪资提升了60%。课程体系非常完善，老师都是行业专家，学习体验非常好。</p>
-                    <div class="flex items-center justify-between text-sm text-gray-500">
-                        <span>2023年6月毕业</span>
-                        <span class="flex items-center text-green-600">
-                            薪资提升: 60%
-                            <svg class="h-4 w-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
-                            </svg>
-                        </span>
-                    </div>
-                </div>
-                
-                <!-- 学员案例2 -->
-                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-tech-silver w-12 h-12 rounded-full flex items-center justify-center text-pro-blue font-bold mr-4">
-                            李
-                        </div>
-                        <div>
-                            <h3 class="font-bold">李女士</h3>
-                            <p class="text-gray-600 text-sm">市场专员 → 数据分析师</p>
-                        </div>
-                    </div>
-                    <div class="mb-4">
-                        <div class="flex text-yellow-500 mb-1">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                            </svg>
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                            </svg>
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                            </svg>
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                            </svg>
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <p class="text-gray-700 mb-4">零基础入门数据分析，通过商业分析师认证后，成功转型为数据分析师。课程内容非常实用，实践项目帮助我积累了真实工作经验，现在在科技公司工作很满意。</p>
-                    <div class="flex items-center justify-between text-sm text-gray-500">
-                        <span>2023年8月毕业</span>
-                        <span class="flex items-center text-green-600">
-                            职位转型成功
-                            <svg class="h-4 w-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                        </span>
-                    </div>
-                </div>
-                
-                <!-- 学员案例3 -->
-                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-cert-gold w-12 h-12 rounded-full flex items-center justify-center text-pro-blue font-bold mr-4">
-                            王
-                        </div>
-                        <div>
-                            <h3 class="font-bold">王先生</h3>
-                            <p class="text-gray-600 text-sm">系统管理员 → 云架构师</p>
-                        </div>
-                    </div>
-                    <div class="mb-4">
-                        <div class="flex text-yellow-500 mb-1">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                            </svg>
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                            </svg>
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                            </svg>
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                            </svg>
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <p class="text-gray-700 mb-4">完成了AWS和Azure双认证后，薪资翻了一倍，从系统管理员晋升为云架构师。培训中实际动手操作的机会很多，讲师都是一线大厂的架构专家，收获非常大。</p>
-                    <div class="flex items-center justify-between text-sm text-gray-500">
-                        <span>2023年5月毕业</span>
-                        <span class="flex items-center text-green-600">
-                            薪资提升: 100%
-                            <svg class="h-4 w-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
-                            </svg>
-                        </span>
                     </div>
                 </div>
             </div>
-            
-            <!-- 更多案例按钮 -->
-            <div class="text-center mt-10">
-                <a href="#contact" class="inline-flex items-center bg-pro-blue hover:bg-blue-900 text-white font-bold py-3 px-6 rounded-full transition shadow-md">
-                    查看更多成功案例
-                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                    </svg>
-                </a>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- 常见问题 -->
-    <section id="faq" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-pro-blue mb-3">常见问题解答</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">我们收集了一些常见问题的解答，帮助您更好地了解我们的认证培训</p>
-            </div>
-            
-            <div class="max-w-4xl mx-auto">
-                <div class="space-y-4">
-                    <!-- 问题1 -->
-                    <div class="border border-gray-200 rounded-lg overflow-hidden">
-                        <button class="faq-toggle w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 transition">
-                            <span class="font-bold text-left">认证培训需要什么基础？</span>
-                            <svg class="faq-icon w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+        <!-- 常见问题解答（FAQ） -->
+        <section id="faq" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-12 text-pro-blue">常见问题解答</h2>
+                <div class="max-w-3xl mx-auto space-y-4">
+                    <!-- FAQ项目 -->
+                    <div class="bg-white rounded-lg shadow">
+                        <button class="faq-toggle w-full px-6 py-4 text-left flex justify-between items-center">
+                            <span class="font-medium">如何选择合适的认证课程？</span>
+                            <svg class="faq-icon w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                             </svg>
                         </button>
-                        <div class="faq-content hidden p-4 border-t">
-                            <p class="text-gray-700">我们的认证培训设计了不同级别的课程，从零基础入门到高阶进阶都有对应方案。在课程开始前，我们会进行专业评估，为您定制最适合的学习路径。大多数认证不要求特定学历背景，只需要有学习热情和职业发展规划即可。</p>
+                        <div class="px-6 py-4 hidden">
+                            <p class="text-gray-600">我们提供专业的职业规划咨询服务，根据您的背景、经验和职业目标，为您推荐最适合的认证课程。您可以预约我们的顾问进行一对一咨询。</p>
                         </div>
                     </div>
-                    
-                    <!-- 问题2 -->
-                    <div class="border border-gray-200 rounded-lg overflow-hidden">
-                        <button class="faq-toggle w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 transition">
-                            <span class="font-bold text-left">认证证书的有效期是多久？</span>
-                            <svg class="faq-icon w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+
+                    <div class="bg-white rounded-lg shadow">
+                        <button class="faq-toggle w-full px-6 py-4 text-left flex justify-between items-center">
+                            <span class="font-medium">认证考试通过率如何？</span>
+                            <svg class="faq-icon w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                             </svg>
                         </button>
-                        <div class="faq-content hidden p-4 border-t">
-                            <p class="text-gray-700">不同认证的有效期各不相同，一般在2-3年之间。大多数国际认证需要通过继续教育学分(PDU/CEU)来维持证书有效性。我们会在培训中详细介绍每种认证的维护要求，并提供认证后的学分获取指导服务。</p>
+                        <div class="px-6 py-4 hidden">
+                            <p class="text-gray-600">我们的认证培训课程通过率超过90%。我们提供全面的备考支持，包括模拟考试、重点难点解析和一对一辅导，确保学员能够顺利通过认证考试。</p>
                         </div>
                     </div>
-                    
-                    <!-- 问题3 -->
-                    <div class="border border-gray-200 rounded-lg overflow-hidden">
-                        <button class="faq-toggle w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 transition">
-                            <span class="font-bold text-left">培训形式是线上还是线下？</span>
-                            <svg class="faq-icon w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+
+                    <div class="bg-white rounded-lg shadow">
+                        <button class="faq-toggle w-full px-6 py-4 text-left flex justify-between items-center">
+                            <span class="font-medium">培训费用如何？</span>
+                            <svg class="faq-icon w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                             </svg>
                         </button>
-                        <div class="faq-content hidden p-4 border-t">
-                            <p class="text-gray-700">我们采用线上+线下混合教学模式。理论知识通过线上平台学习，提供录播课程和在线资料；实践技能则安排线下周末面授和实操训练。这种混合模式既满足了在职人士的灵活学习需求，又保证了必要的实践指导。企业团队培训可提供完全定制的教学方案。</p>
-                        </div>
-                    </div>
-                    
-                    <!-- 问题4 -->
-                    <div class="border border-gray-200 rounded-lg overflow-hidden">
-                        <button class="faq-toggle w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 transition">
-                            <span class="font-bold text-left">如果考试没通过怎么办？</span>
-                            <svg class="faq-icon w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
-                        </button>
-                        <div class="faq-content hidden p-4 border-t">
-                            <p class="text-gray-700">我们提供"认证通过保障"服务。如果您完成了全部课程但未通过考试，我们将提供免费的补习课程和额外的模拟考试，直到您成功通过认证。我们的通过率高达98%，在极少数情况下未通过的学员，我们会进行一对一辅导，确保最终成功。</p>
-                        </div>
-                    </div>
-                    
-                    <!-- 问题5 -->
-                    <div class="border border-gray-200 rounded-lg overflow-hidden">
-                        <button class="faq-toggle w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 transition">
-                            <span class="font-bold text-left">企业团队培训有什么优惠？</span>
-                            <svg class="faq-icon w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
-                        </button>
-                        <div class="faq-content hidden p-4 border-t">
-                            <p class="text-gray-700">企业团队报名享受专属优惠政策。5人以上团队可获得85折优惠，10人以上团队可获得8折优惠，同时提供企业专属培训场地和定制化培训方案。我们还为企业提供人才发展规划和梯队建设方案，帮助企业培养核心人才团队。</p>
-                        </div>
-                    </div>
-                    
-                    <!-- 问题6 -->
-                    <div class="border border-gray-200 rounded-lg overflow-hidden">
-                        <button class="faq-toggle w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 transition">
-                            <span class="font-bold text-left">是否提供就业推荐服务？</span>
-                            <svg class="faq-icon w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
-                        </button>
-                        <div class="faq-content hidden p-4 border-t">
-                            <p class="text-gray-700">是的，我们与500+企业建立了认证人才合作关系。精英进阶套餐和VIP定制套餐的学员可享受优先就业推荐服务。每年我们会举办2-3场认证人才专场招聘会，为学员提供直接对接优质企业的机会。我们的就业推荐成功率超过85%。</p>
+                        <div class="px-6 py-4 hidden">
+                            <p class="text-gray-600">我们的培训费用根据课程类型和时长有所不同。我们提供灵活的付款方式，包括分期付款和团购优惠。具体费用请咨询我们的课程顾问。</p>
                         </div>
                     </div>
                 </div>
-                
-                <!-- 更多问题提示 -->
-                <div class="mt-10 text-center">
-                    <p class="text-gray-600">还有其他问题？</p>
-                    <a href="#contact" class="text-pro-blue font-bold hover:underline">联系我们的顾问获取更多信息</a>
-                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- 页脚 -->
-    <footer class="bg-gray-800 text-white py-8">
+    <footer class="bg-pro-blue text-white py-8">
         <div class="container mx-auto px-4">
-            <div class="flex flex-wrap justify-between">
-                <div class="w-full md:w-1/3 mb-6 md:mb-0">
-                    <h3 class="text-xl font-bold mb-4">认证培训网</h3>
-                    <p class="text-gray-300">ISO29993认证编号: ISO-29993-CN-2023</p>
-                    <p class="text-gray-300">国家人才网备案号: HR-CERT-2023-0578</p>
-                </div>
-                <div class="w-full md:w-1/3 mb-6 md:mb-0">
-                    <h3 class="text-xl font-bold mb-4">联系我们</h3>
-                    <p class="text-gray-300">商务合作: Moshushishiliu</p>
-                    <p class="text-gray-300">客服热线: 400-123-4567</p>
-                </div>
-                <div class="w-full md:w-1/3">
-                    <div class="flex space-x-4">
-                        <div class="text-cert-gold text-2xl font-bold">
-                            <span id="certified-count">5782</span>+
-                            <p class="text-sm text-gray-300">已颁发证书</p>
-                        </div>
-                        <div class="text-cert-gold text-2xl font-bold">
-                            <span id="company-count">278</span>+
-                            <p class="text-sm text-gray-300">合作企业</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="border-t border-gray-700 mt-6 pt-6 text-center">
-                <p>©2023 Moshushishiliu. 保留所有权利</p>
+            <div class="text-center">
+                <p class="mb-4">© 2024 认证培训网. 保留所有权利.</p>
+                <p>联系我们：contact@certification.com</p>
             </div>
         </div>
     </footer>
-
-    <!-- 认证课程列表入口 -->
-    <section id="course-catalog" class="py-16 bg-gradient-to-r from-blue-50 to-indigo-50">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <!-- 标题和描述已删除 -->
-            </div>
-            
-            <!-- 认证课程列表内容已删除 -->
-        </div>
-    </section>
 
     <!-- 页面脚本 -->
     <script>
         // 移动端菜单切换
         document.getElementById('menu-toggle').addEventListener('click', function() {
             document.getElementById('mobile-menu').classList.toggle('hidden');
-        });
-        
-        // 倒计时功能
-        function updateCountdown() {
-            const now = new Date();
-            const endDate = new Date();
-            endDate.setDate(now.getDate() + 2);
-            endDate.setHours(23, 59, 59);
-            
-            const diff = endDate - now;
-            
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-            
-            document.getElementById('days').textContent = days.toString().padStart(2, '0');
-            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-        }
-        
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
-        
-        // 表单提交处理
-        document.getElementById('assessment-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // 这里应该有表单处理逻辑，但为了演示，我们只显示一个alert
-            alert('感谢您的注册！我们的顾问将在24小时内联系您，为您提供个性化认证学习方案。');
         });
         
         // FAQ切换功能
@@ -1027,47 +392,6 @@
         // 为收藏按钮添加点击事件
         document.getElementById('add-favorite').addEventListener('click', addFavorite);
         document.getElementById('add-favorite-mobile').addEventListener('click', addFavorite);
-    </script>
-    <script>
-        /**
-         * @description 确保课程链接正确跳转到courses.html页面
-         */
-        document.addEventListener('DOMContentLoaded', function() {
-            // 获取所有指向courses.html的链接
-            const courseLinks = document.querySelectorAll('a[href="courses.html"]');
-            
-            // 重置链接行为，确保直接通过URL跳转
-            courseLinks.forEach(link => {
-                link.onclick = function(e) {
-                    e.preventDefault(); // 阻止默认行为
-                    console.log('课程链接被点击');
-                    
-                    // 使用不同的跳转方式
-                    setTimeout(function() {
-                        window.location.replace('courses.html');
-                    }, 10);
-                    
-                    return false; // 确保其他事件不会干扰
-                };
-            });
-            
-            // 获取所有指向#contact的链接但应该跳转到courses.html的链接
-            document.querySelectorAll('.p-6 a[href="#contact"]').forEach(link => {
-                if (link.textContent.trim() === '了解详情') {
-                    link.href = 'courses.html';
-                    link.onclick = function(e) {
-                        e.preventDefault();
-                        console.log('联系链接被转换为课程链接');
-                        
-                        setTimeout(function() {
-                            window.location.replace('courses.html');
-                        }, 10);
-                        
-                        return false;
-                    };
-                }
-            });
-        });
     </script>
 </body>
 </html> 
