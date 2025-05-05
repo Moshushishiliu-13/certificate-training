@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>收银台 - 认证培训网</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .pay-list-item.selected {
+            border-color: #ef4444;
+            background: #fff7f7;
+        }
+        .pay-list-item .pay-recommend {
+            font-size: 12px;
+            color: #ef4444;
+            background: #fff0f0;
+            border-radius: 8px;
+            padding: 2px 8px;
+            margin-left: 8px;
+        }
+        .pay-list-item .pay-checked {
+            color: #ef4444;
+            font-size: 20px;
+        }
+        .pay-list-item .pay-logo {
+            width: 32px;
+            height: 32px;
+            margin-right: 12px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+    <header class="bg-white shadow-sm">
+        <div class="max-w-md mx-auto px-4 py-4 flex items-center justify-between">
+            <span class="text-lg font-bold text-gray-800">收银台</span>
+            <a href="/" class="text-indigo-600 hover:underline text-sm">返回首页</a>
+        </div>
+    </header>
+    <main class="flex-1 flex flex-col items-center py-6 px-2">
+        <div class="bg-white rounded-xl shadow-lg p-6 w-full max-w-md">
+            <div class="text-center mb-2 text-gray-500 text-xs" id="pay-timer">支付剩余时间 15:00</div>
+            <div class="text-center mb-4">
+                <div class="text-3xl font-bold text-gray-900 mb-1" id="pay-amount">￥--</div>
+                <div class="text-sm text-gray-500" id="pay-title">课程名称</div>
+            </div>
+            <div class="mb-4">
+                <div class="text-gray-700 font-semibold mb-2">选择支付方式</div>
+                <div class="space-y-3">
+                    <div class="pay-list-item border-2 border-gray-200 rounded-lg flex items-center px-4 py-3 cursor-pointer transition" data-pay="alipay">
+                        <svg class="pay-logo" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <rect width="48" height="48" rx="12" fill="#00A0E9"/>
+                          <text x="24" y="32" text-anchor="middle" font-size="24" fill="white" font-family="Arial">支</text>
+                        </svg>
+                        <span class="flex-1 text-gray-800">支付宝</span>
+                        <span class="pay-recommend">推荐</span>
+                        <span class="pay-checked hidden">✔</span>
+                    </div>
+                    <div class="pay-list-item border-2 border-gray-200 rounded-lg flex items-center px-4 py-3 cursor-pointer transition" data-pay="wechat">
+                        <svg class="pay-logo" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <rect width="48" height="48" rx="12" fill="#07C160"/>
+                          <ellipse cx="24" cy="28" rx="14" ry="10" fill="white"/>
+                          <ellipse cx="30" cy="20" rx="10" ry="8" fill="white"/>
+                          <circle cx="20" cy="28" r="2" fill="#07C160"/>
+                          <circle cx="28" cy="28" r="2" fill="#07C160"/>
+                          <circle cx="28" cy="20" r="2" fill="#07C160"/>
+                        </svg>
+                        <span class="flex-1 text-gray-800">微信支付</span>
+                        <span class="pay-checked hidden">✔</span>
+                    </div>
+                    <div class="pay-list-item border-2 border-gray-200 rounded-lg flex items-center px-4 py-3 cursor-pointer transition" data-pay="paypal">
+                        <img src="https://www.paypalobjects.com/webstatic/icon/pp258.png" class="pay-logo" alt="PayPal"/>
+                        <span class="flex-1 text-gray-800">PayPal</span>
+                        <span class="pay-checked hidden">✔</span>
+                    </div>
+                    <div class="pay-list-item border-2 border-gray-200 rounded-lg flex items-center px-4 py-3 cursor-pointer transition" data-pay="offline">
+                        <svg class="pay-logo" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="48" height="48" rx="12" fill="#6366F1"/><path d="M16 24h16M24 16v16" stroke="white" stroke-width="3" stroke-linecap="round"/></svg>
+                        <span class="flex-1 text-gray-800">线下支付</span>
+                        <span class="pay-checked hidden">✔</span>
+                    </div>
+                </div>
+            </div>
+            <div id="pay-extra" class="mb-4 hidden">
+                <!-- 线下支付信息等 -->
+            </div>
+            <button id="pay-btn" class="w-full py-3 mt-2 bg-red-500 text-white text-lg font-bold rounded-lg shadow hover:bg-red-600 transition">立即支付</button>
+        </div>
+    </main>
+    <footer class="bg-white mt-10">
+        <div class="max-w-md mx-auto px-4 py-6 text-center text-gray-400 text-sm">
+            © 2025 认证培训网. 保留所有权利.
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/qrious/dist/qrious.min.js"></script>
+    <script>
+    /**
+     * 解析URL参数
+     * @returns {Object} 参数对象
+     */
+    function getQueryParams() {
+        const params = {};
+        window.location.search.replace(/\??([^=&]+)=([^&]*)/g, function(_, k, v) {
+            params[k] = decodeURIComponent(v);
+        });
+        return params;
+    }
+    // 显示课程信息
+    const params = getQueryParams();
+    document.getElementById('pay-title').innerText = params.name || '课程名称';
+    document.getElementById('pay-amount').innerText = params.amount ? '￥' + params.amount : '￥--';
+
+    // 倒计时功能
+    let left = 15 * 60;
+    function updateTimer() {
+        if (left <= 0) {
+            document.getElementById('pay-timer').innerText = '订单已超时，请重新下单';
+            document.getElementById('pay-btn').disabled = true;
+            document.getElementById('pay-btn').classList.add('bg-gray-400');
+            return;
+        }
+        let m = Math.floor(left / 60);
+        let s = left % 60;
+        document.getElementById('pay-timer').innerText = `支付剩余时间 ${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+        left--;
+        setTimeout(updateTimer, 1000);
+    }
+    updateTimer();
+
+    // 支付方式选择
+    let selectedPay = 'alipay';
+    const payItems = document.querySelectorAll('.pay-list-item');
+    payItems.forEach(item => {
+        item.addEventListener('click', function() {
+            payItems.forEach(i => {
+                i.classList.remove('selected');
+                i.querySelector('.pay-checked').classList.add('hidden');
+            });
+            item.classList.add('selected');
+            item.querySelector('.pay-checked').classList.remove('hidden');
+            selectedPay = item.getAttribute('data-pay');
+            document.getElementById('pay-extra').classList.add('hidden');
+        });
+    });
+    // 默认选中第一个
+    payItems[0].classList.add('selected');
+    payItems[0].querySelector('.pay-checked').classList.remove('hidden');
+
+    // 支付按钮逻辑
+    document.getElementById('pay-btn').addEventListener('click', function() {
+        if (selectedPay === 'alipay') {
+            fetch('api/alipay/qrcode', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    courseId: params.course || 'COURSE_001', 
+                    amount: Number(params.amount) || 199.00 
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success && data.qrCodeUrl) {
+                    showQRCodeModal(data.qrCodeUrl, '支付宝扫码支付');
+                } else {
+                    alert(data.message || '获取二维码失败，请稍后重试');
+                }
+            })
+            .catch(() => alert('支付请求失败，请稍后重试'));
+        } else if (selectedPay === 'wechat') {
+            // TODO: 替换为真实后端接口
+            showQRCodeModal('https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=weixinpay-demo', '微信扫码支付');
+        } else if (selectedPay === 'paypal') {
+            window.open('https://www.paypal.com/paypalme/Moshushiliu', '_blank');
+        } else if (selectedPay === 'offline') {
+            document.getElementById('pay-extra').innerHTML = `
+                <div class='text-center text-gray-700'>
+                    <div class='mb-2 font-semibold'>线下支付信息</div>
+                    <div>银行账户：招商银行 6222 0000 0000 0000</div>
+                    <div>户名：张三</div>
+                    <div>微信/支付宝转账请备注课程名</div>
+                    <div class='mt-2 text-xs text-gray-400'>请支付后联系微信：Moshushiliu</div>
+                </div>
+            `;
+            document.getElementById('pay-extra').classList.remove('hidden');
+        }
+    });
+
+    // 二维码弹窗
+    function showQRCodeModal(url, title) {
+        let modal = document.createElement('div');
+        modal.className = 'fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50';
+        modal.innerHTML = `
+            <div class='bg-white rounded-xl shadow-lg p-6 flex flex-col items-center'>
+                <div class='text-lg font-bold mb-2'>${title}</div>
+                <canvas id='pay-qrcode' class='mb-2'></canvas>
+                <div class='text-gray-500 text-sm mb-2'>请使用对应App扫码完成支付</div>
+                <button class='mt-2 px-4 py-2 bg-gray-200 rounded hover:bg-gray-300' id='close-modal'>关闭</button>
+            </div>
+        `;
+        document.body.appendChild(modal);
+        var qr = new QRious({ value: url, size: 180 });
+        document.getElementById('pay-qrcode').replaceWith(qr.canvas);
+        qr.canvas.id = 'pay-qrcode';
+        document.getElementById('close-modal').onclick = function() {
+            modal.remove();
+        };
+    }
+    </script>
+</body>
+</html> 
