@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - Professional Certification Training</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'pro-blue': '#002366',
+                        'tech-silver': '#C0C0C0',
+                        'cert-gold': '#FFD700',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Payment Form Handling -->
+    <script>
+        window.onload = function() {
+            // Get URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const course = urlParams.get('course');
+            const price = urlParams.get('price');
+
+            // Update course name and price
+            if(course && price) {
+                const courseNames = {
+                    'qms': 'QMS Internal Auditor Course',
+                    'sixsigma': 'Six Sigma Green Belt',
+                    'ielts': 'IELTS Preparation Course',
+                    'quality': 'Quality Tools Workshop'
+                };
+                
+                document.getElementById('courseName').textContent = courseNames[course] || 'Selected Course';
+                document.getElementById('coursePrice').textContent = `$${price}`;
+                document.getElementById('totalAmount').textContent = `$${price}`;
+            }
+        };
+
+        function handlePayment(event) {
+            event.preventDefault();
+            // Here you would typically handle the payment processing
+            // For demo purposes, we'll just show a success message
+            window.location.href = 'success-en.html';
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <header class="bg-white shadow">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <a href="index-en.html" class="text-2xl font-bold text-pro-blue">Certification Training</a>
+            </div>
+            <nav class="space-x-6">
+                <a href="courses-en.html" class="text-gray-700 hover:text-pro-blue">Back to Courses</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-3xl font-bold text-center text-pro-blue mb-8">Payment Details</h1>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Payment Form -->
+                <div class="md:col-span-2">
+                    <div class="bg-white rounded-lg shadow-lg p-6">
+                        <form onsubmit="handlePayment(event)" class="space-y-6">
+                            <div>
+                                <h2 class="text-xl font-bold mb-4">Personal Information</h2>
+                                <div class="grid grid-cols-1 gap-4">
+                                    <div>
+                                        <label class="block text-gray-700 mb-2">Full Name *</label>
+                                        <input type="text" required class="w-full px-4 py-2 border rounded focus:outline-none focus:border-pro-blue">
+                                    </div>
+                                    <div>
+                                        <label class="block text-gray-700 mb-2">Email Address *</label>
+                                        <input type="email" required class="w-full px-4 py-2 border rounded focus:outline-none focus:border-pro-blue">
+                                    </div>
+                                    <div>
+                                        <label class="block text-gray-700 mb-2">Phone Number *</label>
+                                        <input type="tel" required class="w-full px-4 py-2 border rounded focus:outline-none focus:border-pro-blue">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h2 class="text-xl font-bold mb-4">Payment Method</h2>
+                                <div class="space-y-4">
+                                    <div class="flex items-center space-x-4 p-4 border rounded hover:bg-gray-50 cursor-pointer">
+                                        <input type="radio" name="payment" id="credit" value="credit" checked>
+                                        <label for="credit" class="flex-1">
+                                            <span class="font-bold block">Credit Card</span>
+                                            <span class="text-gray-600 text-sm">Visa, MasterCard, American Express</span>
+                                        </label>
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/2560px-Visa_Inc._logo.svg.png" alt="Visa" class="h-8">
+                                    </div>
+                                    <div class="flex items-center space-x-4 p-4 border rounded hover:bg-gray-50 cursor-pointer">
+                                        <input type="radio" name="payment" id="paypal" value="paypal">
+                                        <label for="paypal" class="flex-1">
+                                            <span class="font-bold block">PayPal</span>
+                                            <span class="text-gray-600 text-sm">Pay securely with PayPal</span>
+                                        </label>
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/1280px-PayPal.svg.png" alt="PayPal" class="h-8">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="w-full bg-pro-blue text-white py-3 rounded-lg font-bold hover:bg-blue-700 transition">
+                                Complete Payment
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="md:col-span-1">
+                    <div class="bg-white rounded-lg shadow-lg p-6">
+                        <h2 class="text-xl font-bold mb-4">Order Summary</h2>
+                        <div class="space-y-4">
+                            <div>
+                                <h3 class="font-bold" id="courseName">Selected Course</h3>
+                                <p class="text-gray-600">Individual Registration</p>
+                            </div>
+                            <div class="border-t pt-4">
+                                <div class="flex justify-between mb-2">
+                                    <span>Course Fee</span>
+                                    <span id="coursePrice">$0</span>
+                                </div>
+                                <div class="flex justify-between font-bold text-lg">
+                                    <span>Total</span>
+                                    <span id="totalAmount">$0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 bg-blue-50 rounded-lg p-4">
+                        <h3 class="font-bold mb-2">Secure Payment</h3>
+                        <p class="text-sm text-gray-600">Your payment information is encrypted and secure. We never store your credit card details.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <p class="mb-4">© 2024 Certification Training. All rights reserved.</p>
+                <p>Contact us: 121681145@qq.com</p>
+                <p>WeChat: Moshushishiliu</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 

@@ -27,6 +27,22 @@
       s.parentNode.insertBefore(hm, s);
     })();
     </script>
+    <script>
+    /**
+     * @description Check user's IP location and redirect if not in China
+     */
+    (async function() {
+        try {
+            const response = await fetch('https://ipapi.co/json/');
+            const data = await response.json();
+            if (data.country_code !== 'CN') {
+                window.location.href = 'index-en.html';
+            }
+        } catch (error) {
+            console.error('Error checking location:', error);
+        }
+    })();
+    </script>
 </head>
 <body class="bg-gray-50 text-gray-800">
     <!-- 顶部导航栏 -->
@@ -332,7 +348,8 @@
         <div class="container mx-auto px-4">
             <div class="text-center">
                 <p class="mb-4">© 2024 认证培训网. 保留所有权利.</p>
-                <p>联系我们：contact@certification.com</p>
+                <p>邮箱：121681145@qq.com</p>
+                <p>微信：Moshushishiliu</p>
             </div>
         </div>
     </footer>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>支付成功 - 认证培训网</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+    <header class="bg-white shadow-sm">
+        <div class="max-w-md mx-auto px-4 py-4 flex items-center justify-between">
+            <span class="text-lg font-bold text-gray-800">支付结果</span>
+            <a href="/" class="text-indigo-600 hover:underline text-sm">返回首页</a>
+        </div>
+    </header>
+    <main class="flex-1 flex flex-col items-center justify-center py-6 px-2">
+        <div class="bg-white rounded-xl shadow-lg p-8 w-full max-w-md text-center">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+            </div>
+            <h1 class="text-2xl font-bold text-gray-900 mb-2">支付成功</h1>
+            <p class="text-gray-600 mb-6">您的订单已支付完成</p>
+            <div class="text-sm text-gray-500 mb-4">
+                <p>订单号：<span id="order-no" class="font-mono"></span></p>
+                <p>支付时间：<span id="pay-time"></span></p>
+            </div>
+            <div class="space-y-3">
+                <a href="/course.html" class="block w-full py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition">
+                    查看课程
+                </a>
+                <a href="/" class="block w-full py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition">
+                    返回首页
+                </a>
+            </div>
+        </div>
+    </main>
+    <footer class="bg-white mt-10">
+        <div class="max-w-md mx-auto px-4 py-6 text-center text-gray-400 text-sm">
+            © 2025 认证培训网. 保留所有权利.
+        </div>
+    </footer>
+    <script>
+    // 显示订单信息
+    const params = new URLSearchParams(window.location.search);
+    const orderNo = params.get('order');
+    if (orderNo) {
+        document.getElementById('order-no').textContent = orderNo;
+    }
+    // 显示支付时间
+    document.getElementById('pay-time').textContent = new Date().toLocaleString('zh-CN');
+    </script>
+</body>
+</html> 

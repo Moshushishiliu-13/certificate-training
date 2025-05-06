@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course List - Professional Certification Training</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .table-container {
+            overflow-x: auto;
+        }
+        .course-table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+        .course-table th {
+            background-color: #4F46E5;
+            color: white;
+            padding: 8px 10px;
+            text-align: left;
+            font-weight: 500;
+            font-size: 13px;
+        }
+        .course-table td {
+            padding: 6px 8px;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: 12px;
+            font-weight: normal;
+            line-height: 1.2;
+        }
+        .course-table th:first-child,
+        .course-table td:first-child {
+            width: 25%;
+        }
+        .course-table th:nth-child(2),
+        .course-table td:nth-child(2) {
+            width: 12%;
+        }
+        .course-table th:nth-child(3),
+        .course-table td:nth-child(3) {
+            width: 12%;
+        }
+        .course-table th:nth-child(4),
+        .course-table td:nth-child(4) {
+            width: 8%;
+        }
+        .course-table th:nth-child(5),
+        .course-table td:nth-child(5) {
+            width: 12%;
+        }
+        .course-table th:nth-child(6),
+        .course-table td:nth-child(6) {
+            width: 15%;
+        }
+        .course-table th:nth-child(7),
+        .course-table td:nth-child(7) {
+            width: 8%;
+        }
+        .course-table th:nth-child(8),
+        .course-table td:nth-child(8) {
+            width: 8%;
+        }
+        .course-table tr:nth-child(even) {
+            background-color: #f9fafb;
+        }
+        .course-table tr:hover {
+            background-color: #f3f4f6;
+        }
+        .section-title {
+            background-color: #6366F1;
+            color: white;
+            font-weight: 500;
+            padding: 8px 10px;
+            font-size: 13px;
+        }
+        .new-label {
+            background-color: #EF4444;
+            color: white;
+            font-size: 10px;
+            font-weight: normal;
+            padding: 1px 4px;
+            border-radius: 3px;
+            margin-left: 4px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        @media (max-width: 1200px) {
+            .course-table th,
+            .course-table td {
+                font-size: 11px;
+                padding: 6px 8px;
+            }
+        }
+        
+        .course-name {
+            position: relative;
+            cursor: default;
+            line-height: 1.2;
+            font-weight: normal;
+            font-size: 12px;
+            white-space: normal;
+            word-wrap: break-word;
+        }
+        
+        .course-name:hover::after {
+            content: attr(data-full-name);
+            position: absolute;
+            left: 0;
+            top: 100%;
+            z-index: 100;
+            background-color: #333;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            white-space: normal;
+            word-wrap: break-word;
+            width: auto;
+            max-width: 300px;
+            font-size: 12px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        .course-name[data-length="long"] {
+            font-size: 12px;
+            letter-spacing: -0.3px;
+        }
+        
+        .course-name[data-length="medium"] {
+            font-size: 13px;
+        }
+        
+        .course-name[data-length="short"] {
+            font-size: 14px;
+        }
+        
+        .nowrap-cell {
+            white-space: normal;
+            word-wrap: break-word;
+            font-size: 12px;
+            line-height: 1.2;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <header class="bg-white shadow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-900">Professional Certification Training</h1>
+                    <p class="mt-1 text-sm text-gray-600">Comprehensive certification training courses for professional growth</p>
+                </div>
+                <a href="index-en.html" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
+                    Back to Home
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div class="mb-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">Course Search</h2>
+            <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                <div class="flex-1">
+                    <input type="text" id="course-search" placeholder="Enter course name or keywords" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                </div>
+                <div>
+                    <select id="category-filter" class="w-full sm:w-48 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        <option value="all">All Categories</option>
+                        <option value="training-camp">Training Camp Courses</option>
+                    </select>
+                </div>
+                <button id="search-btn" class="px-6 py-2 bg-indigo-600 text-white font-medium rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    Search
+                </button>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table class="course-table">
+                <thead>
+                    <tr>
+                        <th>Course Name</th>
+                        <th>Start Date</th>
+                        <th>Certificate</th>
+                        <th>Duration</th>
+                        <th>Exam Period</th>
+                        <th>Requirements</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="section-title" colspan="8">Training Camp Courses</td>
+                    </tr>
+                    <tr>
+                        <td class="course-name" data-full-name="ISO 9001 Quality Management System Internal Auditor Training" data-length="medium">ISO 9001 QMS Internal Auditor Training</td>
+                        <td class="nowrap-cell"><a href="camp-schedule-2025-en.html" class="text-blue-600 hover:underline">2025 Training Schedule</a></td>
+                        <td class="nowrap-cell">Internal Auditor Certificate</td>
+                        <td class="nowrap-cell">14 days</td>
+                        <td class="nowrap-cell">Within 1 month after training</td>
+                        <td class="nowrap-cell">Complete course and assignments</td>
+                        <td class="nowrap-cell">¥198</td>
+                        <td class="nowrap-cell"><a href="payment-en.html?course=iso9001&name=ISO%209001%20QMS%20Internal%20Auditor%20Training&price=198" class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">Enroll Now</a></td>
+                    </tr>
+                    <tr>
+                        <td class="course-name" data-full-name="IATF 16949 Automotive Quality Management System Internal Auditor Training" data-length="long">IATF 16949 Automotive QMS Internal Auditor Training</td>
+                        <td class="nowrap-cell"><a href="camp-schedule-2025-en.html" class="text-blue-600 hover:underline">2025 Training Schedule</a></td>
+                        <td class="nowrap-cell">Internal Auditor Certificate</td>
+                        <td class="nowrap-cell">14 days</td>
+                        <td class="nowrap-cell">Unlimited attempts</td>
+                        <td class="nowrap-cell">Complete course and assignments</td>
+                        <td class="nowrap-cell">¥398</td>
+                        <td class="nowrap-cell"><a href="payment-en.html?course=iatf16949&name=IATF%2016949%20Automotive%20QMS%20Internal%20Auditor%20Training&price=398" class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">Enroll Now</a></td>
+                    </tr>
+                    <tr>
+                        <td class="course-name" data-full-name="ISO 14001 & 45001 Environmental and Occupational Health & Safety Management Systems Internal Auditor Training" data-length="long">ISO 14001 & 45001 EMS & OH&S Internal Auditor Training</td>
+                        <td class="nowrap-cell"><a href="camp-schedule-2025-en.html" class="text-blue-600 hover:underline">2025 Training Schedule</a></td>
+                        <td class="nowrap-cell">Internal Auditor Certificate</td>
+                        <td class="nowrap-cell">14 days</td>
+                        <td class="nowrap-cell">Unlimited attempts</td>
+                        <td class="nowrap-cell">Complete course and assignments</td>
+                        <td class="nowrap-cell">¥198</td>
+                        <td class="nowrap-cell"><a href="payment-en.html?course=iso14001-45001&name=ISO%2014001%20%26%2045001%20Internal%20Auditor%20Training&price=198" class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">Enroll Now</a></td>
+                    </tr>
+                    <tr>
+                        <td class="course-name" data-full-name="ISO 13485 Medical Devices Quality Management System Internal Auditor Training" data-length="long">ISO 13485 Medical Devices QMS Internal Auditor Training</td>
+                        <td class="nowrap-cell"><a href="camp-schedule-2025-en.html" class="text-blue-600 hover:underline">2025 Training Schedule</a></td>
+                        <td class="nowrap-cell">Internal Auditor Certificate</td>
+                        <td class="nowrap-cell">14 days</td>
+                        <td class="nowrap-cell">Unlimited attempts</td>
+                        <td class="nowrap-cell">Complete course and assignments</td>
+                        <td class="nowrap-cell">¥198</td>
+                        <td class="nowrap-cell"><a href="payment-en.html?course=iso13485&name=ISO%2013485%20Medical%20Devices%20QMS%20Internal%20Auditor%20Training&price=198" class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">Enroll Now</a></td>
+                    </tr>
+                    <tr>
+                        <td class="course-name" data-full-name="ISO 9001 Quality Management System Advanced Auditing Techniques" data-length="long">ISO 9001 QMS Advanced Auditing Techniques</td>
+                        <td class="nowrap-cell"><a href="camp-schedule-2025-en.html" class="text-blue-600 hover:underline">2025 Training Schedule</a></td>
+                        <td class="nowrap-cell">Advanced Certificate</td>
+                        <td class="nowrap-cell">21 days</td>
+                        <td class="nowrap-cell">Within 2 months after training</td>
+                        <td class="nowrap-cell">Complete course and practical audit</td>
+                        <td class="nowrap-cell">¥399</td>
+                        <td class="nowrap-cell"><a href="payment-en.html?course=iso9001-advanced&name=ISO%209001%20QMS%20Advanced%20Auditing%20Techniques&price=399" class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">Enroll Now</a></td>
+                    </tr>
+                    <tr>
+                        <td class="course-name" data-full-name="IATF System Documentation Planning and Key Process Management Training Camp" data-length="long">IATF System Documentation Planning and Key Process Management</td>
+                        <td class="nowrap-cell"><a href="camp-schedule-2025-en.html" class="text-blue-600 hover:underline">2025 Training Schedule</a></td>
+                        <td class="nowrap-cell">Training Certificate</td>
+                        <td class="nowrap-cell">14 days</td>
+                        <td class="nowrap-cell">Unlimited attempts</td>
+                        <td class="nowrap-cell">Complete course and assignments</td>
+                        <td class="nowrap-cell">¥499</td>
+                        <td class="nowrap-cell"><a href="payment-en.html?course=iatf-planning&name=IATF%20System%20Documentation%20Planning%20and%20Key%20Process%20Management&price=499" class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">Enroll Now</a></td>
+                    </tr>
+                    <tr>
+                        <td class="course-name" data-full-name="ISO 9001 Quality Management System Documentation Planning and Writing Guide" data-length="long">ISO 9001 QMS Documentation Planning and Writing Guide</td>
+                        <td class="nowrap-cell"><a href="camp-schedule-2025-en.html" class="text-blue-600 hover:underline">2025 Training Schedule</a></td>
+                        <td class="nowrap-cell">Training Certificate</td>
+                        <td class="nowrap-cell">18 days</td>
+                        <td class="nowrap-cell">Unlimited attempts</td>
+                        <td class="nowrap-cell">Complete course and assignments</td>
+                        <td class="nowrap-cell">¥299</td>
+                        <td class="nowrap-cell"><a href="payment-en.html?course=iso9001-doc&name=ISO%209001%20QMS%20Documentation%20Planning%20and%20Writing%20Guide&price=299" class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">Enroll Now</a></td>
+                    </tr>
+                    <tr>
+                        <td class="course-name" data-full-name="Problem-Solving QC Seven Tools Application" data-length="long">Problem-Solving QC Seven Tools Application</td>
+                        <td class="nowrap-cell"><a href="camp-schedule-2025-en.html" class="text-blue-600 hover:underline">2025 Training Schedule</a></td>
+                        <td class="nowrap-cell">Training Certificate</td>
+                        <td class="nowrap-cell">14 days</td>
+                        <td class="nowrap-cell">Unlimited attempts</td>
+                        <td class="nowrap-cell">Complete course and assignments</td>
+                        <td class="nowrap-cell">¥198</td>
+                        <td class="nowrap-cell"><a href="payment-en.html?course=qc-tools&name=Problem-Solving%20QC%20Seven%20Tools%20Application&price=198" class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">Enroll Now</a></td>
+                    </tr>
+                    <tr>
+                        <td class="course-name" data-full-name="8D Problem Solving Method and Case Studies" data-length="short">8D Problem Solving Method and Case Studies</td>
+                        <td class="nowrap-cell"><a href="camp-schedule-2025-en.html" class="text-blue-600 hover:underline">2025 Training Schedule</a></td>
+                        <td class="nowrap-cell">Training Certificate</td>
+                        <td class="nowrap-cell">7 days</td>
+                        <td class="nowrap-cell">Unlimited attempts</td>
+                        <td class="nowrap-cell">Complete course and assignments</td>
+                        <td class="nowrap-cell">¥198</td>
+                        <td class="nowrap-cell"><a href="payment-en.html?course=8d&name=8D%20Problem%20Solving%20Method%20and%20Case%20Studies&price=198" class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">Enroll Now</a></td>
+                    </tr>
+                    <tr>
+                        <td class="course-name" data-full-name="Quality Management Core Tools Training Camp (APQP/PPAP)" data-length="long">Quality Management Core Tools (APQP/PPAP)</td>
+                        <td class="nowrap-cell"><a href="camp-schedule-2025-en.html" class="text-blue-600 hover:underline">2025 Training Schedule</a></td>
+                        <td class="nowrap-cell">Training Certificate</td>
+                        <td class="nowrap-cell">20 days</td>
+                        <td class="nowrap-cell">Unlimited attempts</td>
+                        <td class="nowrap-cell">Complete course and assignments</td>
+                        <td class="nowrap-cell">¥499</td>
+                        <td class="nowrap-cell"><a href="payment-en.html?course=apqp-ppap&name=Quality%20Management%20Core%20Tools%20(APQP/PPAP)&price=499" class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">Enroll Now</a></td>
+                    </tr>
+                    <tr>
+                        <td class="course-name" data-full-name="Quality Management Core Tools Training Camp (FMEA)" data-length="medium">Quality Management Core Tools (FMEA)</td>
+                        <td class="nowrap-cell"><a href="camp-schedule-2025-en.html" class="text-blue-600 hover:underline">2025 Training Schedule</a></td>
+                        <td class="nowrap-cell">Training Certificate</td>
+                        <td class="nowrap-cell">20 days</td>
+                        <td class="nowrap-cell">Unlimited attempts</td>
+                        <td class="nowrap-cell">Complete course and assignments</td>
+                        <td class="nowrap-cell">¥299</td>
+                        <td class="nowrap-cell"><a href="payment-en.html?course=fmea&name=Quality%20Management%20Core%20Tools%20(FMEA)&price=299" class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">Enroll Now</a></td>
+                    </tr>
+                    <tr>
+                        <td class="course-name" data-full-name="Quality Management Core Tools Training Camp (SPC/MSA)" data-length="medium">Quality Management Core Tools (SPC/MSA)</td>
+                        <td class="nowrap-cell"><a href="camp-schedule-2025-en.html" class="text-blue-600 hover:underline">2025 Training Schedule</a></td>
+                        <td class="nowrap-cell">Training Certificate</td>
+                        <td class="nowrap-cell">20 days</td>
+                        <td class="nowrap-cell">Unlimited attempts</td>
+                        <td class="nowrap-cell">Complete course and assignments</td>
+                        <td class="nowrap-cell">¥399</td>
+                        <td class="nowrap-cell"><a href="payment-en.html?course=spc-msa&name=Quality%20Management%20Core%20Tools%20(SPC/MSA)&price=399" class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">Enroll Now</a></td>
+                    </tr>
+                    <tr>
+                        <td class="course-name" data-full-name="Quality Management Core Tools Training Camp (CP)" data-length="medium">Quality Management Core Tools (CP)</td>
+                        <td class="nowrap-cell"><a href="camp-schedule-2025-en.html" class="text-blue-600 hover:underline">2025 Training Schedule</a></td>
+                        <td class="nowrap-cell">Training Certificate</td>
+                        <td class="nowrap-cell">20 days</td>
+                        <td class="nowrap-cell">Unlimited attempts</td>
+                        <td class="nowrap-cell">Complete course and assignments</td>
+                        <td class="nowrap-cell">¥299</td>
+                        <td class="nowrap-cell"><a href="payment-en.html?course=cp&name=Quality%20Management%20Core%20Tools%20(CP)&price=299" class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">Enroll Now</a></td>
+                    </tr>
+                    <tr>
+                        <td class="course-name" data-full-name="VDA 6.3:2023 Process Audit Standard Interpretation and Application" data-length="long">VDA 6.3:2023 Process Audit Training</td>
+                        <td class="nowrap-cell"><a href="camp-schedule-2025-en.html" class="text-blue-600 hover:underline">2025 Training Schedule</a></td>
+                        <td class="nowrap-cell">Training Certificate</td>
+                        <td class="nowrap-cell">14 days</td>
+                        <td class="nowrap-cell">Unlimited attempts</td>
+                        <td class="nowrap-cell">Complete course and assignments</td>
+                        <td class="nowrap-cell">¥299</td>
+                        <td class="nowrap-cell"><a href="payment-en.html?course=vda-6-3&name=VDA%206.3:2023%20Process%20Audit%20Training&price=299" class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">Enroll Now</a></td>
+                    </tr>
+                    <tr>
+                        <td class="course-name" data-full-name="Lean Six Sigma Yellow Belt Certification" data-length="short">Lean Six Sigma Yellow Belt</td>
+                        <td class="nowrap-cell"><a href="camp-schedule-2025-en.html" class="text-blue-600 hover:underline">2025 Training Schedule</a></td>
+                        <td class="nowrap-cell">Training Certificate</td>
+                        <td class="nowrap-cell">14 days</td>
+                        <td class="nowrap-cell">Unlimited attempts</td>
+                        <td class="nowrap-cell">Complete course and assignments</td>
+                        <td class="nowrap-cell">¥398</td>
+                        <td class="nowrap-cell"><a href="payment-en.html?course=lean-six-sigma-yellow&name=Lean%20Six%20Sigma%20Yellow%20Belt&price=398" class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">Enroll Now</a></td>
+                    </tr>
+                    <tr>
+                        <td class="course-name" data-full-name="Lean Six Sigma Green Belt Certification" data-length="short">Lean Six Sigma Green Belt</td>
+                        <td class="nowrap-cell"><a href="camp-schedule-2025-en.html" class="text-blue-600 hover:underline">2025 Training Schedule</a></td>
+                        <td class="nowrap-cell">Training Certificate</td>
+                        <td class="nowrap-cell">60 days</td>
+                        <td class="nowrap-cell">Unlimited attempts</td>
+                        <td class="nowrap-cell">Complete course and assignments</td>
+                        <td class="nowrap-cell">¥2,399</td>
+                        <td class="nowrap-cell"><a href="payment-en.html?course=lean-six-sigma-green&name=Lean%20Six%20Sigma%20Green%20Belt&price=2399" class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">Enroll Now</a></td>
+                    </tr>
+                    <tr>
+                        <td class="course-name" data-full-name="Lean Six Sigma Black Belt Certification" data-length="short">Lean Six Sigma Black Belt</td>
+                        <td class="nowrap-cell"><a href="camp-schedule-2025-en.html" class="text-blue-600 hover:underline">2025 Training Schedule</a></td>
+                        <td class="nowrap-cell">Training Certificate</td>
+                        <td class="nowrap-cell">60 days</td>
+                        <td class="nowrap-cell">Unlimited attempts</td>
+                        <td class="nowrap-cell">Complete course and assignments</td>
+                        <td class="nowrap-cell">¥3,999</td>
+                        <td class="nowrap-cell"><a href="payment-en.html?course=lean-six-sigma-black&name=Lean%20Six%20Sigma%20Black%20Belt&price=3999" class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">Enroll Now</a></td>
+                    </tr>
+                    <tr>
+                        <td class="course-name" data-full-name="PMP Certification Exam Preparation Live Course" data-length="medium">PMP Certification Exam Preparation</td>
+                        <td class="nowrap-cell"><a href="camp-schedule-2025-en.html" class="text-blue-600 hover:underline">2025 Training Schedule</a></td>
+                        <td class="nowrap-cell">Exam Preparation</td>
+                        <td class="nowrap-cell">2 years</td>
+                        <td class="nowrap-cell">PMI Exam</td>
+                        <td class="nowrap-cell">Complete course and assignments</td>
+                        <td class="nowrap-cell">¥3,180</td>
+                        <td class="nowrap-cell"><a href="payment-en.html?course=pmp&name=PMP%20Certification%20Exam%20Preparation&price=3180" class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">Enroll Now</a></td>
+                    </tr>
+                    <tr>
+                        <td class="course-name" data-full-name="Information Systems Project Management Professional Online Live Course" data-length="long">Information Systems Project Management Professional <span class="new-label">New!</span></td>
+                        <td class="nowrap-cell"><a href="camp-schedule-2025-en.html" class="text-blue-600 hover:underline">2025 Training Schedule</a></td>
+                        <td class="nowrap-cell">Exam Preparation</td>
+                        <td class="nowrap-cell">2 years</td>
+                        <td class="nowrap-cell">National Exam</td>
+                        <td class="nowrap-cell">Complete course and assignments</td>
+                        <td class="nowrap-cell">¥3,480</td>
+                        <td class="nowrap-cell"><a href="payment-en.html?course=info-sys-pm&name=Information%20Systems%20Project%20Management%20Professional&price=3480" class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">Enroll Now</a></td>
+                    </tr>
+                    <tr>
+                        <td class="course-name" data-full-name="ESG Excellence Theory and Practice Annual Offline Training" data-length="long">ESG Excellence Theory and Practice <span class="new-label">New!</span></td>
+                        <td class="nowrap-cell"><a href="camp-schedule-2025-en.html" class="text-blue-600 hover:underline">2025 Training Schedule</a></td>
+                        <td class="nowrap-cell">Exam Preparation</td>
+                        <td class="nowrap-cell">1 year</td>
+                        <td class="nowrap-cell">Unified Exam</td>
+                        <td class="nowrap-cell">Complete course and assignments</td>
+                        <td class="nowrap-cell">¥14,800</td>
+                        <td class="nowrap-cell"><a href="payment-en.html?course=esg-offline&name=ESG%20Excellence%20Theory%20and%20Practice&price=14800" class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">Enroll Now</a></td>
+                    </tr>
+                    <tr>
+                        <td class="course-name" data-full-name="National Registered Auditor Training Camp" data-length="medium">National Registered Auditor Training</td>
+                        <td class="nowrap-cell"><a href="camp-schedule-2025-en.html" class="text-blue-600 hover:underline">2025 Training Schedule</a></td>
+                        <td class="nowrap-cell">Exam Preparation</td>
+                        <td class="nowrap-cell">No limit</td>
+                        <td class="nowrap-cell">CCAA Exam</td>
+                        <td class="nowrap-cell">Complete course and assignments</td>
+                        <td class="nowrap-cell">¥599/subject</td>
+                        <td class="nowrap-cell"><a href="payment-en.html?course=national-auditor&name=National%20Registered%20Auditor%20Training&price=599" class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">Enroll Now</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-pro-blue text-white py-12 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="font-bold mb-4">Contact Us</h3>
+                    <p>Email: 121681145@qq.com</p>
+                    <p>WeChat: Moshushishiliu</p>
+                </div>
+                <div>
+                    <h3 class="font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index-en.html#curriculum" class="hover:text-cert-gold">Training Camps</a></li>
+                        <li><a href="index-en.html#consulting" class="hover:text-cert-gold">Consulting</a></li>
+                        <li><a href="index-en.html#cases" class="hover:text-cert-gold">Success Stories</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold mb-4">Resources</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-cert-gold">Blog</a></li>
+                        <li><a href="index-en.html#cases" class="hover:text-cert-gold">Success Stories</a></li>
+                        <li><a href="index-en.html#faq" class="hover:text-cert-gold">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold mb-4">Follow Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="hover:text-cert-gold">LinkedIn</a>
+                        <a href="#" class="hover:text-cert-gold">Twitter</a>
+                        <a href="#" class="hover:text-cert-gold">Facebook</a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-700 text-center">
+                <p>&copy; 2024 Certification Training. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    /**
+     * @description Check user's IP location and redirect if in China
+     */
+    (async function() {
+        try {
+            const response = await fetch('https://ipapi.co/json/');
+            const data = await response.json();
+            if (data.country_code === 'CN') {
+                window.location.href = 'index.html';
+            }
+        } catch (error) {
+            console.error('Error checking location:', error);
+        }
+    })();
+    </script>
+</body>
+</html> 

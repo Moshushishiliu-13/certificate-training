@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Certification Training - Enhance Your Career Competitiveness</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'pro-blue': '#002366',
+                        'tech-silver': '#C0C0C0',
+                        'cert-gold': '#FFD700',
+                    }
+                }
+            }
+        }
+    </script>
+    <script>
+    /**
+     * @description Check user's IP location and redirect if in China
+     */
+    (async function() {
+        try {
+            const response = await fetch('https://ipapi.co/json/');
+            const data = await response.json();
+            if (data.country_code === 'CN') {
+                window.location.href = 'index.html';
+            }
+        } catch (error) {
+            console.error('Error checking location:', error);
+        }
+    })();
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Top Navigation Bar -->
+    <header class="bg-white shadow">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <span class="text-2xl font-bold text-pro-blue">Certification Training</span>
+            </div>
+            <nav class="space-x-6">
+                <a href="#curriculum" class="text-gray-700 hover:text-pro-blue">Training Camps</a>
+                <a href="#consulting" class="text-gray-700 hover:text-pro-blue">Certification Consulting</a>
+                <a href="#cases" class="text-gray-700 hover:text-pro-blue">Success Stories</a>
+                <a href="#faq" class="text-gray-700 hover:text-pro-blue">FAQ</a>
+                <a href="courses-en.html" class="text-white bg-pro-blue px-4 py-2 rounded hover:bg-blue-700 transition">Enroll Now</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Banner Section -->
+    <section class="bg-pro-blue text-white py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl font-bold mb-4">Professional Certification Training for Career Growth</h1>
+            <p class="text-lg mb-8">Systematic curriculum, authoritative faculty team, helping you pass certification exams with ease</p>
+            <a href="courses-en.html" class="inline-block bg-cert-gold text-pro-blue font-bold px-8 py-3 rounded shadow hover:bg-yellow-400 transition">Enroll Now</a>
+        </div>
+    </section>
+
+    <main>
+        <!-- Training Camps Section -->
+        <section id="curriculum" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-12 text-pro-blue">Training Camps</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Quality Management System Internal Auditor Course -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-4 text-pro-blue">QMS Internal Auditor Course</h3>
+                            <p class="text-gray-600 mb-4">Master internal audit skills and improve enterprise quality management.</p>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-cert-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    Audit Skills Training
+                                </li>
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-cert-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    Case Studies
+                                </li>
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-cert-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    Certification Support
+                                </li>
+                            </ul>
+                            <a href="courses-en.html" class="block text-center bg-pro-blue text-white py-2 px-4 rounded hover:bg-blue-700 transition">Learn More</a>
+                        </div>
+                    </div>
+
+                    <!-- Certification Exam Training Course -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-4 text-pro-blue">Certification Exam Training</h3>
+                            <p class="text-gray-600 mb-4">Professional certification exam training to help you pass various quality management certifications.</p>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-cert-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    Exam Focus Analysis
+                                </li>
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-cert-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    Mock Exams
+                                </li>
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-cert-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    One-on-One Tutoring
+                                </li>
+                            </ul>
+                            <a href="courses-en.html" class="block text-center bg-pro-blue text-white py-2 px-4 rounded hover:bg-blue-700 transition">Learn More</a>
+                        </div>
+                    </div>
+
+                    <!-- Quality Management Tools Course -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-4 text-pro-blue">Quality Management Tools</h3>
+                            <p class="text-gray-600 mb-4">Master advanced quality management tools to improve enterprise quality management efficiency.</p>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-cert-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    Tool Application Training
+                                </li>
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-cert-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    Practical Exercises
+                                </li>
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-cert-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    Case Sharing
+                                </li>
+                            </ul>
+                            <a href="courses-en.html" class="block text-center bg-pro-blue text-white py-2 px-4 rounded hover:bg-blue-700 transition">Learn More</a>
+                        </div>
+                    </div>
+
+                    <!-- Lean Six Sigma Course -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-4 text-pro-blue">Lean Six Sigma</h3>
+                            <p class="text-gray-600 mb-4">Systematically learn Lean Six Sigma methodology to improve enterprise operational efficiency.</p>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-cert-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    Methodology Training
+                                </li>
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-cert-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    Project Practice
+                                </li>
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-cert-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    Expert Guidance
+                                </li>
+                            </ul>
+                            <a href="courses-en.html" class="block text-center bg-pro-blue text-white py-2 px-4 rounded hover:bg-blue-700 transition">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Third-party Certification Section -->
+        <section id="consulting" class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-12 text-pro-blue">Third-party Certification & Consulting</h2>
+                <div class="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-gray-50 rounded-lg p-6 text-center shadow">
+                        <h3 class="text-xl font-bold mb-2 text-pro-blue">Retail Certification</h3>
+                        <p class="text-gray-600">Full process guidance for Walmart, Amazon, Carrefour, Costco, etc.</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg p-6 text-center shadow">
+                        <h3 class="text-xl font-bold mb-2 text-pro-blue">Client Certification</h3>
+                        <p class="text-gray-600">Customized certification guidance to help pass client audits.</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg p-6 text-center shadow">
+                        <h3 class="text-xl font-bold mb-2 text-pro-blue">Supplier Certification</h3>
+                        <p class="text-gray-600">Supply chain compliance improvement and supplier audit consulting.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Success Stories -->
+        <section id="cases" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-12 text-pro-blue">Success Stories</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Case Card -->
+                    <div class="bg-white rounded-lg p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-pro-blue rounded-full flex items-center justify-center text-white font-bold">J</div>
+                            <div class="ml-4">
+                                <h3 class="font-bold">John D.</h3>
+                                <p class="text-sm text-gray-600">PMP Certification Student</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">"Through PMP certification training, I successfully transitioned to a Project Manager role with a 40% salary increase. The training content was practical, and the instructors were experienced."</p>
+                        <div class="flex items-center text-cert-gold">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            <span class="ml-1">5.0</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-pro-blue rounded-full flex items-center justify-center text-white font-bold">S</div>
+                            <div class="ml-4">
+                                <h3 class="font-bold">Sarah M.</h3>
+                                <p class="text-sm text-gray-600">ITIL 4 Certification Student</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">"ITIL 4 certification helped me establish systematic IT service management thinking. Now I can better manage my team and projects."</p>
+                        <div class="flex items-center text-cert-gold">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            <span class="ml-1">4.9</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-pro-blue rounded-full flex items-center justify-center text-white font-bold">M</div>
+                            <div class="ml-4">
+                                <h3 class="font-bold">Michael W.</h3>
+                                <p class="text-sm text-gray-600">CISSP Certification Student</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">"CISSP certification opened up more opportunities in the information security field. Now I'm responsible for the company's security architecture design."</p>
+                        <div class="flex items-center text-cert-gold">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            <span class="ml-1">5.0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-12 text-pro-blue">Frequently Asked Questions</h2>
+                <div class="max-w-3xl mx-auto space-y-4">
+                    <!-- FAQ Item -->
+                    <div class="bg-gray-50 rounded-lg shadow">
+                        <button class="faq-toggle w-full px-6 py-4 text-left flex justify-between items-center">
+                            <span class="font-medium">How to choose the right certification course?</span>
+                            <svg class="faq-icon w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div class="px-6 py-4 hidden">
+                            <p class="text-gray-600">We provide professional career planning consultation services. Based on your background, experience, and career goals, we recommend the most suitable certification courses. You can schedule a one-on-one consultation with our advisors.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 rounded-lg shadow">
+                        <button class="faq-toggle w-full px-6 py-4 text-left flex justify-between items-center">
+                            <span class="font-medium">What is the certification exam pass rate?</span>
+                            <svg class="faq-icon w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div class="px-6 py-4 hidden">
+                            <p class="text-gray-600">Our certification training courses have a pass rate of over 90%. We provide comprehensive exam preparation support, including mock exams, key points analysis, and one-on-one tutoring to ensure students can successfully pass the certification exams.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 rounded-lg shadow">
+                        <button class="faq-toggle w-full px-6 py-4 text-left flex justify-between items-center">
+                            <span class="font-medium">What about the training fees?</span>
+                            <svg class="faq-icon w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div class="px-6 py-4 hidden">
+                            <p class="text-gray-600">Our training fees vary depending on the course type and duration. We offer flexible payment options, including installment plans and group discounts. Please consult our course advisors for specific fees.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-pro-blue text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <p class="mb-4">© 2024 Certification Training. All rights reserved.</p>
+                <p>Contact us: 121681145@qq.com</p>
+                <p>WeChat: Moshushishiliu</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Page Scripts -->
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menu-toggle')?.addEventListener('click', function() {
+            document.getElementById('mobile-menu')?.classList.toggle('hidden');
+        });
+        
+        // FAQ toggle functionality
+        document.querySelectorAll('.faq-toggle').forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                const icon = button.querySelector('.faq-icon');
+                
+                content.classList.toggle('hidden');
+                if (!content.classList.contains('hidden')) {
+                    icon.classList.add('rotate-180');
+                } else {
+                    icon.classList.remove('rotate-180');
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
